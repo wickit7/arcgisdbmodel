@@ -21,7 +21,7 @@ To create or update an ArcGIS data model based on a JSON input file, run the "cr
 > python create_db_model.py data_model.json
 
 ## Paramters
-The JSON schema and the set of JSON parameters that can be used are described in the README file [README_PARAMETERS.md](README_PARAMETERS.md).
+The JSON schema and the set of JSON parameters that can be used are described in the README file [PARAMETERS.md](PARAMETERS.md).
 
 ## Tutorial
 A sample JSON file and a README file with instructions can be found in the "tutorial" folder.
