@@ -1,5 +1,5 @@
 # ArcGIS Data Model Creation with JSON (arcgisdbmodel)
-The "create_db_model.py" script is designed to create and update an ArcGIS data model based on a JSON input file. This allows for easy modification and extension of the data model using additional JSON files at a later time.
+The "create_db_model.py" script is designed to create and update an ArcGIS geodatabase data model based on a JSON input file. This allows for easy modification and extension of the data model using additional JSON files at a later time.
 
 Creating a data model using a JSON file has several advantages over manual creation in ArcGIS Pro. Here are some of them:
 - Time-saving: Creating a data model using a JSON file is faster than manual creation in ArcGIS Pro because you can create the entire model in one go, rather than having to create each component one by one.
@@ -11,8 +11,9 @@ Creating a data model using a JSON file has several advantages over manual creat
 ## Getting Started
 To get started with creating an ArcGIS data model using JSON, you'll need the following:
 - ArcGIS Pro installed on your machine
-- A JSON file describing the data model
 - The "create_db_model.py" script
+- A JSON file describing the data model
+- A target geodatabase in which the data model is to be created: A file geodatabase (.gdb) or an enterprise geodatabase such as SQL Server (.sde), Oracle, or PostgreSQL.
 
 ## Usage
 To create or update an ArcGIS data model based on a JSON input file, run the "create_db_model.py" script with the path to the JSON file as a command-line argument:
