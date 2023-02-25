@@ -1,7 +1,7 @@
 # JSON file input parameters
 
 - The implemented functions (e.g. "add_field()") include all parameters of the corresponding ArcGIS function (e.g. "AddField()") and possibly  additional parameters.
-- An example JSON file is found in the "tutorial" folder.
+- Example JSON files are found in the [tutorial](tutorial) folder.
 
 
 | Parameter Name|    Description    | Example |
