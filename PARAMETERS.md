@@ -12,7 +12,7 @@
 | DBName | The name of the database including the file extension. (mandatory) | "event.gdb" or "event.owner.test.sde" |
 | Overwrite | The ArcGIS Environment Setting "overwrite". (mandatory) | "True" or "False" |
 | DeleteAllExisting | Specify whether all existing objects in the database should be deleted beforehand. (optional) | "True" or "False"(default)|
-| SpatialReferenceName | The spatial reference system name. | "CH1903+ LV95"(default) |
+| SpatialReferenceName | The name of the spatial reference system. → [https://epsg.io/](https://epsg.io/) (mandatory)| "CH1903+ LV95"(default) |
 | **EnvironmentSettings** | A dictionary with [ArcGIS Environment](https://pro.arcgis.com/en/pro-app/latest/tool-reference/appendices/spatial-reference-and-geoprocessing.htm) settings (some settings are only applied to feature classes within datasets). (optional)| --- |
 | EnvironmentSettings/xy_tolerance | see in the ArcGIS documentation | "0.0004 Meters" |
 | EnvironmentSettings/xy_resolution | see in the ArcGIS documentation | "0.00005 Meters" |
