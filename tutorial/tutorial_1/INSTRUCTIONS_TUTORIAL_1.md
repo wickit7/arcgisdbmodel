@@ -25,13 +25,13 @@ In this tutorial, the data model shown in the figure below is created using JSON
 The datamodel is created with the JSON file [tutorial_1_create.json](tutorial_1_create.json). 
 ### General Settings
 In the general settings, the path to the log file, the path to the database and other properties are specified.
-- LogFolder: 	The path to the log file.
-- LogVersion: The path to the folder where the log file is to be created.
-- Conpath: The path to the folder where the geodatabase or the geodatabase connection file is located.
-- DBName: The name of the database or connection file including the file extension. 
-- Overwrite: Specify whether existing elements in the geodatabase are to be overwritten. 
-- DeleteAllExisting: Specify whether all existing elements should be deleted before the new elements are created.
-- SpatialReferenceName: The name of the spatial reference system, i.e. "CH1903+ LV95" for Switzerland.
+- **LogFolder**: 	The path to the log file.
+- **LogVersion**: The path to the folder where the log file is to be created.
+- **Conpath**: The path to the folder where the geodatabase or the geodatabase connection file is located.
+- **DBName**: The name of the database or connection file including the file extension. 
+- **Overwrite**: Specify whether existing elements in the geodatabase are to be overwritten. 
+- **DeleteAllExisting**: Specify whether all existing elements should be deleted before the new elements are created.
+- **SpatialReferenceName**: The name of the spatial reference system, i.e. "CH1903+ LV95" for Switzerland.
 
 ```json
 {
@@ -47,11 +47,11 @@ In the general settings, the path to the log file, the path to the database and 
 ### Coded Value Domains
 For the feture class "asset", two coded value domains with certain possible values are needed. In the feature class "Fields"-section the corresponding field of the feature class is linked to the domain.
 To create the coded value domains, the following parameters are used:
-- domain_name: The name of the domain. 
-- domain_description: The description of the domain. (optional)	
-- field_type: The type of attribute domain to be created (data type of the "code").
-- domain_type: The type of the domain.	
-- DomainValues: A dictionary with "code:code_description" pairs.
+- **domain_name**: The name of the domain. 
+- **domain_description**: The description of the domain. (optional)	
+- **field_type**: The type of attribute domain to be created (data type of the "code").
+- **domain_type**: The type of the domain.	
+- **DomainValues**: A dictionary with "code:code_description" pairs.
 
 ```json
 	"Domains": [{ 
@@ -71,7 +71,7 @@ To create the coded value domains, the following parameters are used:
 ```
 ### Range Value Domain
 In contrast to the coded value domain, the minimum and maximum value of the range must be specified.  
-- DomainRange: A dictionary with min and max values. 
+- **DomainRange**: A dictionary with min and max values. 
 
 ```json
           {
@@ -87,7 +87,7 @@ In contrast to the coded value domain, the minimum and maximum value of the rang
 
 ### Dataset
 The dataset is specified by defining the name.
-- out_name: The name of the domain.
+- **out_name**: The name of the domain.
 
 ```json
 	"Datasets": [{
@@ -99,12 +99,12 @@ The dataset is specified by defining the name.
 ### Feature Class LOCATION - General Settings
 The feature classes are created by defining general settings, fields and attribute rules.
 Here, the follwing parameters are used to define general settings:
-- out_name: The name of the feature class.
-- geometry_type: The geometry type, which is in this case is Polygon.
-- out_dataset: The name of the output data set in which the feature class is to be created.
-- GlobalID: Specify whether the feature class shuold have a GlobalID field.	The field is not defined in the "Fields" section, it will be created automatically.
-- EditorTracking: Specify whether editor tracking should be activated for the feature class. The fields "CREATED_USER", "CREATED_DATE", "LAST_EDITED_USER", "LAST_EDITED_DATE" are created.
-- EnableAttachments: Specify whether upload attachments should be enabled for the feature class.
+- **out_name**: The name of the feature class.
+- **geometry_type**: The geometry type, which is in this case is Polygon.
+- **out_dataset**: The name of the output data set in which the feature class is to be created.
+- **GlobalID**: Specify whether the feature class shuold have a GlobalID field.	The field is not defined in the "Fields" section, it will be created automatically.
+- **EditorTracking**: Specify whether editor tracking should be activated for the feature class. The fields "CREATED_USER", "CREATED_DATE", "LAST_EDITED_USER", "LAST_EDITED_DATE" are created.
+- **EnableAttachments**: Specify whether upload attachments should be enabled for the feature class.
 
 ```json
 	"Features": [
@@ -119,10 +119,10 @@ Here, the follwing parameters are used to define general settings:
 
 ### Feature Class LOCATION - Fields
 The follwing parameters are used to create the fields of the feature classes:
-- field_name: The name of the field. 
-- field_type: The field type.
-- field_length: The field length for the fields of type text. (optional)
-- field_alias: The alternate name for the field. 
+- **field_name**: The name of the field. 
+- **field_type**: The field type.
+- **field_length**: The field length for the fields of type text. (optional)
+- **field_alias**: The alternate name for the field. 
 
 ```json
 					"Fields": [{
@@ -165,13 +165,13 @@ The follwing parameters are used to create the fields of the feature classes:
 
 ### Feature Class LOCATION - Attribute Rules
 An attribute rule is created to prevent the user from defining the same "LocationID" for two different features.
-- name: The name of the rule.
-- type: The type of the rule. 
-- script_expression: An Arcade script expression. 
-- triggering_events: Secify when the rule is triggered.
-- description: The description of the rule.
-- error_number: An error number that is returned when the rule is violated.
-- error_message: An error message returned if the rule is violated.
+- **name**: The name of the rule.
+- **type**: The type of the rule. 
+- **script_expression**: An Arcade script expression. 
+- **triggering_events**: Secify when the rule is triggered.
+- **description**: The description of the rule.
+- **error_number**: An error number that is returned when the rule is violated.
+- **error_message**: An error message returned if the rule is violated.
 
 ```json
 
@@ -191,7 +191,7 @@ An attribute rule is created to prevent the user from defining the same "Locatio
 
 ### Feature Class ASSET
 In the same way, the feature class ASSET is created. To assign a domain to a field, the parameter "field_domain is used".
-- field_domain: The name of the domain to be used for the field.
+- **field_domain**: The name of the domain to be used for the field.
 
 ```json
 				{
@@ -261,16 +261,16 @@ In the same way, the feature class ASSET is created. To assign a domain to a fie
 
 ### Relationship Class
 Finally, the follwoing parameters are used to define the 1_n-realtionship between LOCATION and ASSET.
-- origin_table:
-- destination_table:
-- out_relationship_class:
-- relationship_type:
-- forward_label:
-- backward_label:
-- message_direction:
-- cardinality:
-- origin_primary_key:
-- origin_foreign_key:
+- **origin_table**: The name of the source table or feature class.
+- **destination_table**: The name of the destination table or feature class.
+- **out_relationship_class**: The name of relationship class to be created.
+- **relationship_type**: The relationship type.
+- **forward_label**: The name to identify the relationship when navigationg from the origin table to the destination table. 
+- **backward_label**: The name to identify the relationship when navigationg from the destination table to the origin table.
+- **message_direction**: The message direction. Here, the assets should be deleted if the parent object location is deleted.
+- **cardinality**: The cardinality of the relationship.	
+- **origin_primary_key**: The primary key (field name) in the source table.
+- **origin_foreign_key**: The field name in the destiation table that stores the primary key of the source table.
 
 ```json
 	"Relations": [{
