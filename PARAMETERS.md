@@ -9,7 +9,7 @@
 | LogFolder | The path to the folder where the log file is to be created. (mandatory) | "C:/tutorial/Logs" |
 | LogVersion | String that is used as postfix for the log file name. (mandatory) | "v01" |
 | Conpath | The path to the folder where the geodatabase or the geodatabase connection file is located. (mandatory) | "C:/tutorial" |
-| DBName | The name of the database including the file extension. (mandatory) | "event.gdb" or "event.owner.test.sde" |
+| DBName | The name of the database or connection file including the file extension. (mandatory) | "event.gdb" or "event.owner.test.sde" |
 | Overwrite | The ArcGIS Environment Setting "overwrite". (mandatory) | "True" or "False" |
 | DeleteAllExisting | Specify whether all existing objects in the database should be deleted beforehand. (optional) | "True" or "False"(default)|
 | SpatialReferenceName | The name of the spatial reference system. → [https://epsg.io/](https://epsg.io/) (mandatory)| "CH1903+ LV95"(default) |
