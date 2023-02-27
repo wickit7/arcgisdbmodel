@@ -50,7 +50,7 @@
 | Features/**Fields** | List of fields to be added. Do not add the EditorTracking fields, GlobalId, Subtype field here! (optional) | --- |
 | Features/Fields/field_name | The name of the field. (mandatory) |  "TYPE" |
 | Features/Fields/field_type | The field type. (mandatory) |  "SHORT" |
-| Features/Fields/field_domain | The name of the domain to be used for the field (optional) |  "Event_Type" |
+| Features/Fields/field_domain | The name of the domain to be used for the field. (optional) |  "Event_Type" |
 | Features/Fields/**FieldDomainSubtype** | The name of the field. (mandatory) |  --- |
 | Features/Fields/FieldDomainSubtype/field_domain | The name of the domain to be used for the field and subtype. (mandatory) |  "Event_Type" |
 | Features/Fields/FieldDomainSubtype/subtype_code | If the domain is to be used only for specific subtype(s) "code:code_description" pairs seperated by ";" have to be defined. (mandatory) |  "1:concert;2:political" |
