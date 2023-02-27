@@ -1,6 +1,9 @@
 # Tutorial 1 - Location with assets
 
 ## Introduction
+- A general description of how to use the script to create a data model with JSON is found in the [README.md](../../README.md) file.
+- The meaning of all parameters can be found in the [PARAMETERS.md](../../PARAMETERS.md) file.
+
 In this tutorial, the data model shown in the figure below is created using JSON. The focus is on the following elements:
 - create coded value domain
 - create range domain
@@ -21,7 +24,7 @@ In this tutorial, the data model shown in the figure below is created using JSON
 ## Create Data Model
 The datamodel is created with the JSON file [tutorial_1_create.json](tutorial_1_create.json). 
 ### General Settings
-In the general settings, the path to the log file, the path to the database and other properties are specified. The meaning of all parameters can be found in the [PARAMETERS.md](..\..\PARAMETERS.md) readme file.
+In the general settings, the path to the log file, the path to the database and other properties are specified.
 - LogFolder: 	The path to the log file.
 - LogVersion: The path to the folder where the log file is to be created.
 - Conpath: The path to the folder where the geodatabase or the geodatabase connection file is located.
