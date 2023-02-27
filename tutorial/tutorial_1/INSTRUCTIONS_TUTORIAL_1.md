@@ -5,6 +5,8 @@
 - The meaning of all parameters can be found in the [PARAMETERS.md](../../PARAMETERS.md) file.
 
 In this tutorial, the data model shown in the figure below is created using JSON. The focus is on the following elements:
+- general settings
+- environment settings
 - create coded value domain
 - create range domain
 - create dataset
@@ -42,6 +44,17 @@ In the general settings, the path to the log file, the path to the database and 
 	"Overwrite": "True",
 	"DeleteAllExisting": "True",
 	"SpatialReferenceName": "CH1903+ LV95",
+  
+```
+
+### Environment Settings
+The default environment settings can be optionally adjusted, i.e. the XY Tolerance and the XY Resolution. 
+
+```json
+	"EnvironmentSettings":{
+		"xy_tolerance": "0.0004 Meters",
+		"xy_resolution": "0.00005 Meters"
+		},
   
 ```
 ### Coded Value Domains
