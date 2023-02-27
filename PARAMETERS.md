@@ -75,7 +75,7 @@
 | Relations/message_direction | The message direction. (optional) | "FORWARD"  |
 | Relations/cardinality | The cardinality of the relationship. | "MANY_TO_MANY" or "ONE_TO_ONE"(default) or "ONE_TO_MANY"  |
 | Relations/origin_primary_key | The primary key (field name) in the source table. (mandatory)  | "GlobalId" |
-| Relations/origin_foreign_key | The field name in the relationship class table that stores the primary key of the source table. (mandatory)| "EVENT_REF" |
+| Relations/origin_foreign_key | The field name in the destinination table in case of "1:n" cardinality , or the relationship class table in case of "n:m" cardinatily, that stores the primary key of the source table. (mandatory)| "EVENT_REF" |
 | Relations/destination_primary_key | The primary key in the destination table. (optional)  | "GlobalId" |
 | Relations/destination_foreign_key | The field name in the relationship class table that stores the primary key of the destination table.  (optional)  | "INFRASTRUCTURE_REF" |
 | Relations/**AttributedFields** | List of fields to be added to the relationship class. (optional)  | --- |
