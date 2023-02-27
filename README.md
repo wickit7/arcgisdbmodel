@@ -24,6 +24,8 @@ To create or update an ArcGIS data model based on a JSON input file, run the "cr
 Example json files and instruction README files can be found in the folder [tutorial](tutorial).
 
 In  [tutorial 1](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_1.md), the focus is on the following elements:
+- general settings
+- environment settings
 - create coded value domain
 - create range domain
 - create dataset
