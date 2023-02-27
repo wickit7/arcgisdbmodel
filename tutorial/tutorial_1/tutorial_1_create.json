@@ -1,0 +1,159 @@
+{
+	"LogFolder": "Logs",
+	"LogVersion": "v01",
+	"Conpath": "C:/Temp/tutorial_1",
+	"DBName": "infrastructure_management.gdb",
+	"Overwrite": "True",
+	"DeleteAllExisting": "True",
+	"SpatialReferenceName": "CH1903+ LV95",
+	"Domains": [{ 
+				"domain_name": "AssetType",
+				"domain_description": "Type of the asset", 
+				"field_type": "SHORT",
+				"domain_type": "CODED",
+				"DomainValues": {"0":"unknown", "1":"street light", "2":"traffic signal", "3":"fire hydrant"}
+				},
+				{ 
+				"domain_name": "AssetStatus",
+				"domain_description": "Status of the asset", 
+				"field_type": "SHORT",
+				"domain_type": "CODED",
+				"DomainValues": {"0":"unknown", "1":"operational", "2":"under repair", "3":"out of service"}
+				},
+				{
+					"domain_name": "AssetHeight",
+					"domain_description": "Value between 0 und 100", 
+					"field_type": "DOUBLE",
+					"domain_type": "RANGE",
+					"DomainRange": {"min_value":"0", "max_value":"100"}
+				}
+			],
+	"Datasets": [{
+					"out_name": "INFRASTRUCTURE"
+					}
+				],
+	"Features": [
+				{
+					"out_name": "LOCATION",
+					"geometry_type": "POLYGON",
+					"out_dataset": "INFRASTRUCTURE",
+					"GlobalID": "True",
+					"EditorTracking": "True",
+					"EnableAttachments": "False",				
+					"Fields": [{
+						"field_name": "LocationID",
+						"field_type": "LONG",
+						"field_alias": "Location ID"
+						},
+						{
+						"field_name": "NAME",
+						"field_type": "TEXT",
+						"field_length": "40",
+						"field_alias": "Location Name"
+						},
+						{
+						"field_name": "DESCRIPTION",
+						"field_type": "TEXT",
+						"field_length": "512",
+						"field_alias": "Description"
+						},
+							{
+						"field_name": "ADDRESS",
+						"field_type": "TEXT",
+						"field_length": "255",
+						"field_alias": "Address"
+						},
+						{
+						"field_name": "CITY",
+						"field_type": "TEXT",
+						"field_length": "255",
+						"field_alias": "City"
+						},
+						{
+						"field_name": "ZIP_CODE",
+						"field_type": "TEXT",
+						"field_length": "4",
+						"field_alias": "Zip Code"
+						}						
+					],
+					"AttributeRules": [
+						{
+						"name": "UNIQUE_LOCATION_ID",
+						"type": "CONSTRAINT",
+						"script_expression":"var orgID = $originalFeature.LocationID;  var newID = $feature.LocationID;  if (newID==orgID) {   return true;  } else {   var location_fc = FeatureSetbyName($datastore, 'LOCATION', ['LocationID', 'GlobalID'], false);  var location_fc_filter = filter(location_fc, 'LocationID = @newID'); if (count(location_fc_filter) > 1) {     return false; } else {     return true;      } }",
+						"triggering_events": "INSERT;UPDATE",
+						"description": "Checking if location with the entered LocationID does already exist",
+						"error_number": "1",
+						"error_message": "The entered Location ID does already exist!"
+						}
+					]	
+				},
+				{
+					"out_name": "ASSET",
+					"geometry_type": "POINT",
+					"out_dataset": "INFRASTRUCTURE",
+					"GlobalID": "True",
+					"EditorTracking": "True",
+					"EnableAttachments": "True",
+					"Fields": [{
+						"field_name": "AssetID",
+						"field_type": "LONG",
+						"field_alias": "Asset ID"
+						},
+						{
+						"field_name": "TYPE",
+						"field_type": "SHORT",
+						"field_domain": "AssetType",
+						"field_alias": "Asset Type"
+						},
+						{
+						"field_name": "DESCRIPTION",
+						"field_type": "TEXT",
+						"field_length": "512",
+						"field_alias": "Description"
+						},
+						{
+						"field_name": "MANUFACTURER",
+						"field_type": "TEXT",
+						"field_length": "255",
+						"field_alias": "Manufacturer"
+						},		
+						{
+						"field_name": "STATUS",
+						"field_type": "SHORT",
+						"field_domain": "AssetStatus",
+						"field_alias": "Status"
+						},
+						{
+						"field_name": "FEATURELINK",
+						"field_type": "GUID",
+						"field_alias": "Location Reference"
+						}						
+					],
+					"AttributeRules": [
+						{
+						"name": "UNIQUE_ASSET_ID",
+						"type": "CONSTRAINT",
+						"script_expression":"var orgID = $originalFeature.AssetID;  var newID = $feature.AssetID;  if (newID==orgID) {   return true;  } else {   var asset_fc = FeatureSetbyName($datastore, 'ASSET', ['AssetID', 'GlobalID'], false);  var asset_fc_filter = filter(asset_fc, 'AssetID = @newID'); if (count(asset_fc_filter) > 1) {     return false; } else {     return true;      } }",
+						"triggering_events": "INSERT;UPDATE",
+						"description": "Checking if asset with the entered AssetID does already exist",
+						"error_number": "1",
+						"error_message": "The entered Asset ID does already exist!"
+						}
+					]			
+				}
+				],
+	"Relations": [{
+					"origin_table": "LOCATION",
+					"destination_table": "ASSET",
+					"out_relationship_class": "LOCATION_ASSET_REL",
+					"relationship_type": "COMPOSITE",
+					"forward_label": "Loction has Assets",
+					"backward_label": "Asset belongs to a location",
+					"message_direction": "FORWARD",
+					"cardinality": "ONE_TO_MANY",
+					"origin_primary_key": "GlobalId",
+					"origin_foreign_key": "FEATURELINK"				
+				}
+			]	
+}
