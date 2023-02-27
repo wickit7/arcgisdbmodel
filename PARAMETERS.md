@@ -32,7 +32,7 @@
 | Domains/domain_type | The type of the domain. |  "CODED"(default) or "RANGE" |
 | Domains/* | All other parameters of "arcpy.management.CreateDomain" can be used. (optional) | --- |
 | Domains/DomainValues | A dictionary with "code:code_description" pairs. (mandatory if domain_type = "CODED")| {"0":"unknown", "1":"public", "2":"private"} 
-| Domains/DomainRange | A dictionary with min and max values. (mandatory if domain_type = "RANGE"| {"min_value":"0", "max_value":"100"} |
+| Domains/DomainRange | A dictionary with min and max values. (mandatory if domain_type = "RANGE")| {"min_value":"0", "max_value":"100"} |
 |  **Datasets**  | List of datasets to be created → see Esri documentation arcpy.management.CreateFeatureDataset. (optional) | --- |
 | Datasets/out_name | The name of the dataset to be created. (mandatory)| "EVENT" |
 | **Features** | List of feature classes to be created → see Esri doc arcpy.management.CreateFeatureclass. (optional)  | --- |
