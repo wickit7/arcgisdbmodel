@@ -13,10 +13,10 @@ In this tutorial, the data model shown in the figure below is created using JSON
     - calculate field
 
 ### Overview data model
-<img  src="tutorial_1_datamodel.jpg" width=70% height=70%>
+<img  src="..\img\tutorial_1_datamodel.jpg" width=100% height=100%>
 
 ### Example data
-<img  src="tutorial_1_map.PNG" width=70% height=70%>
+<img  src="..\img\tutorial_1_map.PNG" width=60% height=60%>
 
 ## Create datamodel
 The datamodel is created with the JSON file [tutorial_1_create.json](tutorial_1_create.json). 
