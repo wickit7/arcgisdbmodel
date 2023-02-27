@@ -37,7 +37,7 @@ In  [tutorial 1](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_1.md), the focus is o
 ## Paramters
 The JSON schema and the set of JSON parameters that can be used are described in the README file [PARAMETERS.md](PARAMETERS.md).
 
-## Data models
+## Data Models
 A collection of data models can be found in the folder [datamodels](datamodels). 
 
 **You are welcome to place your own data models here so that they can be used by the community.**
