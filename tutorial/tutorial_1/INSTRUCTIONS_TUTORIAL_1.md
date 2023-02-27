@@ -25,7 +25,7 @@ In this tutorial, the data model shown in the figure below is created using JSON
 The datamodel is created with the JSON file [tutorial_1_create.json](tutorial_1_create.json). 
 ### General Settings
 In the general settings, the path to the log file, the path to the database and other properties are specified.
-- **LogFolder**: 	The path to the log file.
+- **LogFolder**: The path to the log file.
 - **LogVersion**: The path to the folder where the log file is to be created.
 - **Conpath**: The path to the folder where the geodatabase or the geodatabase connection file is located.
 - **DBName**: The name of the database or connection file including the file extension. 
