@@ -93,9 +93,9 @@ The dataset is specified by defining the name.
 		],
 ```
 
-### feature classes
+### feature class LOCATION - general settings
 The feature classes are created by defining general settings, fields and attribute rules.
-In this case, the follwing parameters are used to define general settings:
+Here, the follwing parameters are used to define general settings:
 - out_name: The name of the feature class.
 - geometry_type: The geometry type, which is in this case is Polygon.
 - out_dataset: The name of the output data set in which the feature class is to be created.
@@ -113,3 +113,213 @@ In this case, the follwing parameters are used to define general settings:
 					"EditorTracking": "True",
 					"EnableAttachments": "False",
 ```
+
+### feature class LOCATION - fields
+The follwing parameters are used to create the fields of the feature classes:
+- field_name: The name of the field. 
+- field_type: The field type.
+- field_length: The field length for the fields of type text. (optional)
+- field_alias: The alternate name for the field. 
+
+```json
+					"Fields": [{
+						"field_name": "LocationID",
+						"field_type": "LONG",
+						"field_alias": "Location ID"
+						},
+						{
+						"field_name": "NAME",
+						"field_type": "TEXT",
+						"field_length": "40",
+						"field_alias": "Location Name"
+						},
+						{
+						"field_name": "DESCRIPTION",
+						"field_type": "TEXT",
+						"field_length": "512",
+						"field_alias": "Description"
+						},
+							{
+						"field_name": "ADDRESS",
+						"field_type": "TEXT",
+						"field_length": "255",
+						"field_alias": "Address"
+						},
+						{
+						"field_name": "CITY",
+						"field_type": "TEXT",
+						"field_length": "255",
+						"field_alias": "City"
+						},
+						{
+						"field_name": "ZIP_CODE",
+						"field_type": "TEXT",
+						"field_length": "4",
+						"field_alias": "Zip Code"
+						}						
+					],
+```
+
+### feature class LOCATION - attribute rules
+An attribute rule is created to prevent the user from defining the same "LocationID" for two different features.
+- name: The name of the rule.
+- type: The type of the rule. 
+- script_expression: An Arcade script expression. 
+- triggering_events: Secify when the rule is triggered.
+- description: The description of the rule.
+- error_number: An error number that is returned when the rule is violated.
+- error_message: An error message returned if the rule is violated.
+
+```json
+
+					"AttributeRules": [
+						{
+						"name": "UNIQUE_LOCATION_ID",
+						"type": "CONSTRAINT",
+						"script_expression":"var orgID = $originalFeature.LocationID;  var newID = $feature.LocationID;  if (newID==orgID) {   return true;  } else {   var location_fc = FeatureSetbyName($datastore, 'LOCATION', ['LocationID', 'GlobalID'], false);  var location_fc_filter = filter(location_fc, 'LocationID = @newID'); if (count(location_fc_filter) > 1) {     return false; } else {     return true;      } }",
+						"triggering_events": "INSERT;UPDATE",
+						"description": "Checking if location with the entered LocationID does already exist",
+						"error_number": "1",
+						"error_message": "The entered Location ID does already exist!"
+						}
+					]	
+				},
+```				
+### feature class ASSET
+In the same way, the feature class ASSET is created. To assign a domain to a field, the parameter "field_domain is used".
+- field_domain: The name of the domain to be used for the field.
+
+```json
+				{
+					"out_name": "ASSET",
+					"geometry_type": "POINT",
+					"out_dataset": "INFRASTRUCTURE",
+					"GlobalID": "True",
+					"EditorTracking": "True",
+					"EnableAttachments": "True",
+					"Fields": [{
+						"field_name": "AssetID",
+						"field_type": "LONG",
+						"field_alias": "Asset ID"
+						},
+						{
+						"field_name": "TYPE",
+						"field_type": "SHORT",
+						"field_domain": "AssetType",
+						"field_alias": "Asset Type"
+						},
+						{
+						"field_name": "DESCRIPTION",
+						"field_type": "TEXT",
+						"field_length": "512",
+						"field_alias": "Description"
+						},
+						{
+						"field_name": "MANUFACTURER",
+						"field_type": "TEXT",
+						"field_length": "255",
+						"field_alias": "Manufacturer"
+						},		
+						{
+						"field_name": "STATUS",
+						"field_type": "SHORT",
+						"field_domain": "AssetStatus",
+						"field_alias": "Status"
+						},
+						{
+						"field_name": "HEIGHT",
+						"field_type": "DOUBLE",
+						"field_domain": "AssetHeight",
+						"field_alias": "Asset Height"
+						},
+						{
+						"field_name": "FEATURELINK",
+						"field_type": "GUID",
+						"field_alias": "Location Reference"
+						}						
+					],
+					"AttributeRules": [
+						{
+						"name": "UNIQUE_ASSET_ID",
+						"type": "CONSTRAINT",
+						"script_expression":"var orgID = $originalFeature.AssetID;  var newID = $feature.AssetID;  if (newID==orgID) {   return true;  } else {   var asset_fc = FeatureSetbyName($datastore, 'ASSET', ['AssetID', 'GlobalID'], false);  var asset_fc_filter = filter(asset_fc, 'AssetID = @newID'); if (count(asset_fc_filter) > 1) {     return false; } else {     return true;      } }",
+						"triggering_events": "INSERT;UPDATE",
+						"description": "Checking if asset with the entered AssetID does already exist",
+						"error_number": "1",
+						"error_message": "The entered Asset ID does already exist!"
+						}
+					]			
+				}
+				],
+
+```
+
+
+### relationship
+Finally, the follwoing parameters are used to define the 1_n-realtionship between LOCATION and ASSET.
+- origin_table:
+- destination_table:
+- out_relationship_class:
+- relationship_type:
+- forward_label:
+- backward_label:
+- message_direction:
+- cardinality:
+- origin_primary_key:
+- origin_foreign_key:
+
+```json
+	"Relations": [{
+					"origin_table": "LOCATION",
+					"destination_table": "ASSET",
+					"out_relationship_class": "LOCATION_ASSET_REL",
+					"relationship_type": "COMPOSITE",
+					"forward_label": "Loction has Assets",
+					"backward_label": "Asset belongs to a location",
+					"message_direction": "FORWARD",
+					"cardinality": "ONE_TO_MANY",
+					"origin_primary_key": "GlobalId",
+					"origin_foreign_key": "FEATURELINK"				
+				}
+			]	
+}
+```
+
+## Update data model
+The data model is updated with the JSON file [tutorial_1_update.json](tutorial_1_update.json).
+
+At a later stage, there is a requirement to add a new attribute STATE to the feature class LOCATION. The existing data entries are to be populated with the value "Switzerland". A simple calculation expression is used to create a value that will populate existing rows.  As you can see, the "LogVersion" is set to "v02" and "DeleteAllExisting" is set to "False". 
+
+```json
+{
+	"LogFolder": "Logs",
+	"LogVersion": "v02",
+	"Conpath": "C:/Temp/tutorial_1",
+	"DBName": "infrastructure_management.gdb",
+	"Overwrite": "True",
+	"DeleteAllExisting": "False",
+	"SpatialReferenceName": "CH1903+ LV95",
+	"UpdateFeatures": [{
+		"in_table": "LOCATION",
+		"AddFields": [
+			{
+			"field_name": "STATE",
+			"field_type": "TEXT",
+			"field_length": "255",
+			"field_alias": "State"
+			}			
+			],
+		"CalculateFields": [
+			{
+			"field": "STATE",
+			"expression": "'Switzerland'"
+			}
+			]
+		}]	
+}
+
+```
+
+
+- 
+
