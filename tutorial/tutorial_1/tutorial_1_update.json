@@ -1,0 +1,26 @@
+{
+	"LogFolder": "Logs",
+	"LogVersion": "v02",
+	"Conpath": "C:/Temp/tutorial_1",
+	"DBName": "infrastructure_management.gdb",
+	"Overwrite": "True",
+	"DeleteAllExisting": "False",
+	"SpatialReferenceName": "CH1903+ LV95",
+	"UpdateFeatures": [{
+		"in_table": "LOCATION",
+		"AddFields": [
+			{
+			"field_name": "STATE",
+			"field_type": "TEXT",
+			"field_length": "255",
+			"field_alias": "State"
+			}			
+			],
+		"CalculateFields": [
+			{
+			"field": "STATE",
+			"expression": "'Switzerland'"
+			}
+			]
+		}]	
+}
