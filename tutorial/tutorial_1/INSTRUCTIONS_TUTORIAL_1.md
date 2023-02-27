@@ -12,15 +12,15 @@ In this tutorial, the data model shown in the figure below is created using JSON
     - add field
     - calculate field
 
-### Overview data model
+### Overview Data Model
 <img  src="..\img\tutorial_1_datamodel.jpg" width=100% height=100%>
 
-### Example data
+### Example Data
 <img  src="..\img\tutorial_1_map.PNG" width=60% height=60%>
 
-## Create datamodel
+## Create Data Model
 The datamodel is created with the JSON file [tutorial_1_create.json](tutorial_1_create.json). 
-### general settings
+### General Settings
 In the general settings, the path to the log file, the path to the database and other properties are specified. The meaning of all parameters can be found in the [PARAMETERS.md](..\..\PARAMETERS.md) readme file.
 - LogFolder: 	The path to the log file.
 - LogVersion: The path to the folder where the log file is to be created.
@@ -41,7 +41,7 @@ In the general settings, the path to the log file, the path to the database and 
 	"SpatialReferenceName": "CH1903+ LV95",
   
 ```
-### coded value domains
+### Coded Value Domains
 For the feture class "asset", two coded value domains with certain possible values are needed. In the feature class "Fields"-section the corresponding field of the feature class is linked to the domain.
 To create the coded value domains, the following parameters are used:
 - domain_name: The name of the domain. 
@@ -66,7 +66,7 @@ To create the coded value domains, the following parameters are used:
           "DomainValues": {"0":"unknown", "1":"operational", "2":"under repair", "3":"out of service"}
           },
 ```
-### range value domain
+### Range Value Domain
 In contrast to the coded value domain, the minimum and maximum value of the range must be specified.  
 - DomainRange: A dictionary with min and max values. 
 
@@ -82,7 +82,7 @@ In contrast to the coded value domain, the minimum and maximum value of the rang
 
 ```
 
-### dataset
+### Dataset
 The dataset is specified by defining the name.
 - out_name: The name of the domain.
 
@@ -93,7 +93,7 @@ The dataset is specified by defining the name.
 		],
 ```
 
-### feature class LOCATION - general settings
+### Feature Class LOCATION - General Settings
 The feature classes are created by defining general settings, fields and attribute rules.
 Here, the follwing parameters are used to define general settings:
 - out_name: The name of the feature class.
@@ -114,7 +114,7 @@ Here, the follwing parameters are used to define general settings:
 					"EnableAttachments": "False",
 ```
 
-### feature class LOCATION - fields
+### Feature Class LOCATION - Fields
 The follwing parameters are used to create the fields of the feature classes:
 - field_name: The name of the field. 
 - field_type: The field type.
@@ -160,7 +160,7 @@ The follwing parameters are used to create the fields of the feature classes:
 					],
 ```
 
-### feature class LOCATION - attribute rules
+### Feature Class LOCATION - Attribute Rules
 An attribute rule is created to prevent the user from defining the same "LocationID" for two different features.
 - name: The name of the rule.
 - type: The type of the rule. 
@@ -184,8 +184,9 @@ An attribute rule is created to prevent the user from defining the same "Locatio
 						}
 					]	
 				},
-```				
-### feature class ASSET
+```	
+
+### Feature Class ASSET
 In the same way, the feature class ASSET is created. To assign a domain to a field, the parameter "field_domain is used".
 - field_domain: The name of the domain to be used for the field.
 
@@ -255,7 +256,7 @@ In the same way, the feature class ASSET is created. To assign a domain to a fie
 ```
 
 
-### relationship
+### Relationship Class
 Finally, the follwoing parameters are used to define the 1_n-realtionship between LOCATION and ASSET.
 - origin_table:
 - destination_table:
@@ -285,7 +286,7 @@ Finally, the follwoing parameters are used to define the 1_n-realtionship betwee
 }
 ```
 
-## Update data model
+## Update Data Model
 The data model is updated with the JSON file [tutorial_1_update.json](tutorial_1_update.json).
 
 At a later stage, there is a requirement to add a new attribute STATE to the feature class LOCATION. The existing data entries are to be populated with the value "Switzerland". A simple calculation expression is used to create a value that will populate existing rows.  As you can see, the "LogVersion" is set to "v02" and "DeleteAllExisting" is set to "False". 
