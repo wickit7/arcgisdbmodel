@@ -43,7 +43,7 @@
 | Features/GlobalID | Specify whether the feature class shuold have a GlobalID field. | --- |
 | Features/EditorTracking | Specify wheter editor tracking should be activated and the corresponding fields ("CREATED_USER",  "CREATED_DATE", "LAST_EDITED_USER", "LAST_EDITED_DATE") added.  | "True" or "False"(default) |
 | Features/EnableAttachments | Specify wheter adding attachments should be activated. | "True" or "False"(default) |
-| Features/**Subtypes** | A dictonary with subtypes to be created for the feature class. (optional) | --- |
+| Features/**Subtypes** | A dictionary with subtypes to be created for the feature class. (optional) | --- |
 | Features/Subtypes/field_name | The name of the subtype field to be created. (mandatory) → automatically creates a field of type "SHORT" → If another field type (e.g. LONG) should be used, use the field name of the corresponding field in the "Features/Fields" section (if attribute rules are implemented for subtypes, than use "LONG" instead of "SHORT"!). | --- |
 | Features/Subtypes/SubtypeValues | Dictionary with "Code:Code_description" pairs. (mandatory) |  {"0":"unknown", "1": "concert", "2":"political", "3": "other"} |
 | Features/Subtypes/DefaultSubtypeCode | Code of the subtype to be used as the default. (optional) |  "1" |
@@ -82,7 +82,7 @@
 | Relations/AttributedFields/* | The same parameters as in the section "Fields". (optional)  | --- |
 | Relations/**Rules** | List of rules to add to the relationship class (mainly used to define relationship for certain subtypes) → see arcpy.management.AddRuleToRelationshipClass. (optional)  | --- |
 | Relations/Rules/origin_subtype | The subtype of the source table for which the rule is to apply.  | "concert" |
-| Relations/Rules/destination_subtype | The subtype of the destination tablee for which the rule is to apply. | "stage" |
+| Relations/Rules/destination_subtype | The subtype of the destination table for which the rule is to apply. | "stage" |
 | Relations/Rules/* | All other parameters of "arcpy.management.AddRuleToRelationshipClass" can be used. (optional) | --- |
 | **UpdateFeatures**| List of existing features to be updated. (optional) | --- |
 | UpdateFeatures/in_table | The name of the existing table or feature class. (mandatory) | --- |
