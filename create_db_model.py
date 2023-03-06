@@ -798,9 +798,10 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
     # define the path to the workspace (sde connection file oder gdb)
     if stage:
         if "." in db_name:
-            # Annahme db_name mit Dateiendung angegeben
+            # Assumption: db_name has the file ending included
             db_fullname = db_name
         else:
+            # Assumption: db_name ends as following, depending on the server stage (default at city of Lucerne)
             if stage == 'TEST':
                     db_fullname = db_name + '.owner.test.sde'
             elif stage == 'INTE':
@@ -808,7 +809,7 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
             elif stage == 'PROD':
                     db_fullname = db_name + '.owner.prod.sde'
             else:
-                # Annahme gdb
+                # Assumption: Esri file geodatabse (.gdb)
                 db_fullname = db_name + '.gdb'
     else:
         db_fullname = db_name
@@ -917,6 +918,14 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
             # add GlobalIDs
             if 'GlobalID' in dic_filtered and dic_filtered['GlobalID'] == 'True':
                 add_global_id(dic_filtered['out_name'])
+            # add subtypes
+            if 'Subtypes' in dic_filtered:
+                dic_subtype = dic_filtered['Subtypes']
+                create_subtype_field(dic_filtered['out_name'], dic_subtype['field_name'])
+                for code in dic_subtype['SubtypeValues']:
+                    add_subtype(dic_filtered['out_name'], code, dic_subtype['SubtypeValues'][code])
+                if 'DefaultSubtypeCode' in dic_subtype:
+                    set_default_subtype(dic_filtered['out_name'], dic_subtype['DefaultSubtypeCode'])
             # add Fields
             if 'Fields' in dic_filtered:
                 for dic_field in dic_filtered['Fields']:
@@ -930,15 +939,6 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                         for dic_domain in field_domain_subtypes:
                             assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
                                                    dic_domain['field_domain'], dic_domain['subtype_code'])
-
-            # add subtypes
-            if 'Subtypes' in dic_filtered:
-                dic_subtype = dic_filtered['Subtypes']
-                create_subtype_field(dic_filtered['out_name'], dic_subtype['field_name'])
-                for code in dic_subtype['SubtypeValues']:
-                    add_subtype(dic_filtered['out_name'], code, dic_subtype['SubtypeValues'][code])
-                if 'DefaultSubtypeCode' in dic_subtype:
-                    set_default_subtype(dic_filtered['out_name'], dic_subtype['DefaultSubtypeCode'])
             # add editor tracking including editor tracking fields
             if 'EditorTracking' in dic_filtered and dic_filtered['EditorTracking'] == 'True':
                 enable_editor_tracking(in_dataset = dic_filtered['out_name'], add_fields = "ADD_FIELDS")
@@ -962,6 +962,14 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
             # add GlobalIDs
             if 'GlobalID' in dic_filtered and dic_filtered['GlobalID'] == 'True':
                 add_global_id(dic_filtered['out_name'])
+            # add subtypes
+            if 'Subtypes' in dic_filtered:
+                dic_subtype = dic_filtered['Subtypes']
+                create_subtype_field(dic_filtered['out_name'], dic_subtype['field_name'])
+                for code in dic_subtype['SubtypeValues']:
+                    add_subtype(dic_filtered['out_name'], code, dic_subtype['SubtypeValues'][code])
+                if 'DefaultSubtypeCode' in dic_subtype:
+                    set_default_subtype(dic_filtered['out_name'], dic_subtype['DefaultSubtypeCode'])
             # add fields
             if 'Fields' in dic_filtered:
                 for dic_field in dic_filtered['Fields']:
@@ -975,14 +983,6 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                         for dic_domain in field_domain_subtypes:
                             assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
                                                    dic_domain['field_domain'], dic_domain['subtype_code'])
-            # add subtypes
-            if 'Subtypes' in dic_filtered:
-                dic_subtype = dic_filtered['Subtypes']
-                create_subtype_field(dic_filtered['out_name'], dic_subtype['field_name'])
-                for code in dic_subtype['SubtypeValues']:
-                    add_subtype(dic_filtered['out_name'], code, dic_subtype['SubtypeValues'][code])
-                if 'DefaultSubtypeCode' in dic_subtype:
-                    set_default_subtype(dic_filtered['out_name'], dic_subtype['DefaultSubtypeCode'])
             # add editor tracking including editor tracking Felder
             if 'EditorTracking' in dic_filtered and dic_filtered['EditorTracking'] == 'True':
                 enable_editor_tracking(in_dataset = dic_filtered['out_name'], add_fields = "ADD_FIELDS")
