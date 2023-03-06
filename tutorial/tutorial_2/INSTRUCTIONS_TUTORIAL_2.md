@@ -277,7 +277,7 @@ The following parameters are used to define the relation depending on the subtyp
 }
 ```
 
-### Example Data
+## Example Data
 <img  src="..\img\tutorial_2_map.PNG" width=60% height=60%>
 
 
