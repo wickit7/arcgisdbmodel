@@ -10,7 +10,7 @@ In this tutorial, the focus is on the following elements:
 - relation depending on subtypes
 
 ### Overview Data Model v01
-<img  src="..\img\tutorial_2_datamodel_v01.jpg" width=100% height=100%>
+<img  src="..\img\tutorial_2_datamodel_v01.jpg" width=80% height=80%>
 
 ## Create Data Model
 The datamodel is created with the JSON file [tutorial_2_create.json](tutorial_2_create.json). 
@@ -180,7 +180,7 @@ The data model is updated with the JSON file [tutorial_2_update.json](tutorial_2
 At a later stage, it is necessary to add a new feature class in which the occupied areas of the locations can be stored.
 
 ### Overview Data Model v02
-<img  src="..\img\tutorial_2_datamodel_v01.jpg" width=100% height=100%>
+<img  src="..\img\tutorial_2_datamodel_v01.jpg" width=80% height=80%>
 
 ### Feature Class LOCATION_AREA
 The feature class "LOCATION_AREA" has the subtypes "ShopArea", "RestaurantArea" and "EventArea".
