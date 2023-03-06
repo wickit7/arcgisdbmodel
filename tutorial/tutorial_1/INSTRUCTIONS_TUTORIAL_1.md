@@ -20,9 +20,6 @@ In this tutorial, the data model shown in the figure below is created using JSON
 ### Overview Data Model
 <img  src="..\img\tutorial_1_datamodel.jpg" width=100% height=100%>
 
-### Example Data
-<img  src="..\img\tutorial_1_map.PNG" width=60% height=60%>
-
 ## Create Data Model
 The datamodel is created with the JSON file [tutorial_1_create.json](tutorial_1_create.json). 
 ### General Settings
@@ -336,5 +333,8 @@ At a later stage, there is a requirement to add a new attribute STATE to the fea
 }
 
 ```
+
+## Example Data
+<img  src="..\img\tutorial_1_map.PNG" width=60% height=60%>
 
 
