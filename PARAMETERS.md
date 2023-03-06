@@ -51,8 +51,8 @@
 | Features/Fields/field_name | The name of the field. (mandatory) |  "TYPE" |
 | Features/Fields/field_type | The field type. (mandatory) |  "SHORT" |
 | Features/Fields/field_domain | The name of the domain to be used for the field. (optional) |  "Event_Type" |
-| Features/Fields/**FieldDomainSubtype** | The name of the field. (mandatory) |  --- |
-| Features/Fields/FieldDomainSubtype/field_domain | The name of the domain to be used for the field and subtype. (mandatory) |  "Event_Type" |
+| Features/Fields/**FieldDomainSubtype** | A list of domain mappings depending on subtypes. (mandatory) |  --- |
+| Features/Fields/FieldDomainSubtype/field_domain | The name of the domain to be used for the field and the specific subtype. (mandatory) |  "Event_Type" |
 | Features/Fields/FieldDomainSubtype/subtype_code | If the domain is to be used only for specific subtype(s) "code:code_description" pairs seperated by ";" have to be defined. (mandatory) |  "1:concert;2:political" |
 | Features/Fields/* | All other parameters of "arcpy.management.AddField " can be used. (optional) | --- |
 | Features/**AttributeRules** | List with attribute rules for the feature class → see arcpy.management.AddAttributeRule. (optional) | --- |
@@ -81,7 +81,7 @@
 | Relations/**AttributedFields** | List of fields to be added to the relationship class. (optional)  | --- |
 | Relations/AttributedFields/* | The same parameters as in the section "Fields". (optional)  | --- |
 | Relations/**Rules** | List of rules to add to the relationship class (mainly used to define relationship for certain subtypes) → see arcpy.management.AddRuleToRelationshipClass. (optional)  | --- |
-| Relations/Rules/origin_subtype | The subtype of the source tablee for which the rule is to apply.  | "concert" |
+| Relations/Rules/origin_subtype | The subtype of the source table for which the rule is to apply.  | "concert" |
 | Relations/Rules/destination_subtype | The subtype of the destination tablee for which the rule is to apply. | "stage" |
 | Relations/Rules/* | All other parameters of "arcpy.management.AddRuleToRelationshipClass" can be used. (optional) | --- |
 | **UpdateFeatures**| List of existing features to be updated. (optional) | --- |
