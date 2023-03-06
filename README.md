@@ -38,9 +38,10 @@ In  [tutorial 1](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_1.md), the focus is o
     - calculate field
 
 ### Tutorial 2
-In  [tutorial 2](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_2.md), the focus is on the following elements:
-- domains
+In  [tutorial 2](tutorial/tutorial_2/INSTRUCTIONS_TUTORIAL_2.md), the focus is on the following elements:
 - subtypes
+- domain depending on subtypes
+- relation depending on subtypes
 
 ### Tutorial 3
 In  [tutorial 3](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_3.md), the focus is on the following elements:
