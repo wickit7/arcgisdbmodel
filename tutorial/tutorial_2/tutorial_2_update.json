@@ -1,0 +1,73 @@
+{
+	"LogFolder": "Logs",
+	"LogVersion": "v02",
+	"Conpath": "C:/Temp/tutorial_2",
+	"DBName": "location_management.gdb",
+	"Overwrite": "True",
+	"DeleteAllExisting": "False",
+	"SpatialReferenceName": "CH1903+ LV95",
+	"Features":[
+			{
+				"out_name": "LOCATION_AREA",
+				"geometry_type": "POLYGON",
+				"out_dataset": "LOCATION_MANAGEMENT",
+				"GlobalID": "True",
+				"EditorTracking": "True",
+				"Subtypes":{
+					"field_name": "TYP",
+					"SubtypeValues": {"1": "ShopArea", "2":"RestaurantArea", "3": "EventArea"}
+					},					
+				"Fields": [
+					{
+					"field_name": "NUMBER",
+					"field_type": "LONG",
+					 "field_alias":"Number"
+
+					},
+					{
+					   "field_name":"DESCRIPTION",
+					   "field_type":"TEXT",
+					   "field_length":"512",
+					   "field_alias":"Description"
+					},
+					{
+					"field_name": "FEATURELINK",
+					"field_type": "GUID"
+					}
+				]
+			}
+		],
+	"Relations": [{
+					"origin_table": "LOCATION",
+					"destination_table": "LOCATION_AREA",
+					"out_relationship_class": "LOCATION_LOCATION_AREA_REL",
+					"relationship_type": "COMPOSITE",
+					"forward_label": "Location has areas",
+					"backward_label": "Area belongs to a location",
+					"message_direction": "FORWARD",
+					"cardinality": "ONE_TO_MANY",
+					"origin_primary_key": "GlobalId",
+					"origin_foreign_key": "FEATURELINK",
+					"Rules":[
+						{
+						"origin_subtype": "Shop",
+						"destination_subtype": "ShopArea",
+						"destination_minimum": "0",
+						"destination_maximum": "100"
+						},
+						{
+						"origin_subtype": "Restaurant",
+						"destination_subtype": "RestaurantArea",
+						"destination_minimum": "0",
+						"destination_maximum": "100"
+						},
+						{
+						"origin_subtype": "Event",
+						"destination_subtype": "EventArea",
+						"destination_minimum": "0",
+						"destination_maximum": "100"
+						}
+					]
+				}
+			]	
+}

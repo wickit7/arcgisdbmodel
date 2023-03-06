@@ -1,0 +1,126 @@
+{
+   "LogFolder":"Logs",
+   "LogVersion":"v01",
+   "Conpath":"C:/Temp/tutorial_2",
+   "DBName":"location_management.gdb",
+   "Overwrite":"True",
+   "DeleteAllExisting":"True",
+   "SpatialReferenceName":"CH1903+ LV95",
+   "Domains":[
+      {
+         "domain_name":"ShopType",
+         "domain_description":"Type of the shop",
+         "field_type":"SHORT",
+         "domain_type":"CODED",
+         "DomainValues":{
+            "1":"Clothing store",
+            "2":"Bookstore",
+            "3":"Electronic store",
+            "4":"Toy store",
+            "5":"Gift shop",
+            "6":"Convenience store",
+            "7":"Pet store",
+            "8":"Furniture store",
+            "9":"Jewlery store",
+            "10":"Health and beauty store",
+            "99":"Others"
+         }
+      },
+      {
+         "domain_name":"RestaurantType",
+         "domain_description":"Type of the restaurant",
+         "field_type":"SHORT",
+         "domain_type":"CODED",
+         "DomainValues":{
+            "1":"Fast food restaurant",
+            "2":"Fine dining restaurant",
+            "3":"Cafe or coffee shop",
+            "4":"Street vendor",
+            "5":"Bar or pub",
+            "6":"Bakery or pastry shop",
+            "7":"Ice cream or dessert shop",
+            "99":"Others"
+         }
+      },
+      {
+         "domain_name":"EventType",
+         "domain_description":"Type of the event",
+         "field_type":"SHORT",
+         "domain_type":"CODED",
+         "DomainValues":{
+            "1":"Music concerts",
+            "2":"Festivals",
+            "3":"Sports matches",
+            "4":"Art exhibitions",
+            "5":"Trade shows",
+            "6":"Movie screenings",
+            "7":"Charity events",
+            "8":"Food fairs and competitions",
+            "9":"Conferences",
+            "10":"Theater performances",
+            "99":"Others"
+         }
+      }
+   ],
+   "Datasets":[
+      {
+         "out_name":"LOCATION_MANAGEMENT"
+      }
+   ],
+   "Features":[
+      {
+         "out_name":"LOCATION",
+         "geometry_type":"POINT",
+         "out_dataset":"LOCATION_MANAGEMENT",
+         "GlobalID":"True",
+         "EditorTracking":"True",
+         "EnableAttachments":"True",
+         "Subtypes":{
+            "field_name":"TYP",
+            "SubtypeValues":{
+               "1":"Shop",
+               "2":"Restaurant",
+               "3":"Event"
+            },
+            "DefaultSubtypeCode":"1"
+         },
+         "Fields":[
+            {
+               "field_name":"LocationID",
+               "field_type":"LONG",
+               "field_alias":"Location ID"
+            },
+            {
+               "field_name":"NAME",
+               "field_type":"TEXT",
+               "field_length":"40",
+               "field_alias":"Location Name"
+            },
+            {
+               "field_name":"DESCRIPTION",
+               "field_type":"TEXT",
+               "field_length":"512",
+               "field_alias":"Description"
+            },
+            {
+               "field_name":"SERVICE_TYPE",
+               "field_type":"SHORT",
+               "FieldDomainSubtype":[
+                  {
+                     "field_domain":"ShopType",
+                     "subtype_code":"1: Shop"
+                  },
+                  {
+                     "field_domain":"RestaurantType",
+                     "subtype_code":"2: Restaurant"
+                  },
+                  {
+                     "field_domain":"EventType",
+                     "subtype_code":"3: Event"
+                  }
+               ]
+            }
+		]
+	}
+	]
+}
