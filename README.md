@@ -61,3 +61,9 @@ A collection of data models can be found in the folder [datamodels](datamodels).
 ## Contributing
 Contributions to this project are welcome! If you have any suggestions or bug reports, please open an issue or pull request on GitHub.
 
+## License
+This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE.txt) file for more information.
+
+## Acknowledgements
+This project includes the arcpy package from Esri (Copyright © 1995-2022 Esri), which is subject to its own license terms. Please refer to the Esri license agreement for more information.
+
