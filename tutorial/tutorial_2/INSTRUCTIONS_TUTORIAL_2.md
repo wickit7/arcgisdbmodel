@@ -103,15 +103,15 @@ The feature classes will be stored in the dataset "LOCATION_MANAGEMENT".
 ```
 
 ### Feature Class LOCATION
-The feature classes are created by defining general settings, subtypes and fields.
+The feature class "Location" is created by defining general settings, subtypes and fields.
 
-The following parameters are used to define the subtypes and the domains dependent on the subtypes:
-- **Subtypes**: A dictonary with subtypes to be created for the feature class.
-- **Subtypes/field_name**: The field  in which the subtype value is stored.
+The following parameters are used to define the subtypes and to assign the domains to the corresponding subtypes:
+- **Subtypes**: A dictionary with subtypes to be created for the feature class.
+- **Subtypes/field_name**: The name of the field in which the subtype value is stored.
 - **Subtypes/SubtypeValues**: A dictionary with pairs of "Code:Code_description" defining the subtypes.
 - **Subtypes/DefaultSubtypeCode**: The code of the subtype to be used as the default.
 - **FieldDomainSubtype**:  A list of domain assignments depending on the subtypes.
-- **FieldDomainSubtype/field_domain**: The name of the domain to be used for the specific subtype.
+- **FieldDomainSubtype/field_domain**: The name of the domain to be used for the field and the specific subtype.
 - **FieldDomainSubtype/subtype_code**:  Assign the domain to a specific subtype with "code:code_description" pairs (separated by ";" if a domain is to be used for multiple subtypes).
 
 ```json
@@ -177,7 +177,7 @@ The following parameters are used to define the subtypes and the domains depende
 ## Update Data Model
 The data model is updated with the JSON file [tutorial_2_update.json](tutorial_2_update.json).
 
-At a later stage, it is necessary to add a new feature class in which the occupied areas of the locations can be stored.
+At a later stage, it will be necessary to add a new feature class in which the occupied areas of the locations can be stored.
 
 ### Overview Data Model v02
 <img  src="..\img\tutorial_2_datamodel_v01.jpg" width=80% height=80%>
@@ -234,7 +234,7 @@ The relationship between "LOCATION" and "LOCATION_AREA" depends on the subtypes.
 The following parameters are used to define the relation depending on the subtypes:
 - **Rules**: A list of rules is used to define the relationship for certain subtypes.
 - **Rules/origin_subtype**: The subtype of the source table for which the rule is to apply.
-- **Rules/destination_subtype**: The subtype of the destination tablee for which the rule is to apply.
+- **Rules/destination_subtype**: The subtype of the destination table for which the rule is to apply.
 - **Rules/destination_minimum**: The minimum number of child objects (target objects) that the parent object (source object) must have.
 (optional)
 - **Rules/destination_maximum**: The maximum number of child objects (target objects) that the parent object (source object) must have.
