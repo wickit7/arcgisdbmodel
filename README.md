@@ -66,7 +66,7 @@ The JSON schema and the set of JSON parameters that can be used are described in
 ## Data Models
 A collection of data models can be found in the folder [datamodels](datamodels). 
 
-**You are welcome to place your own data models here so that they can be used by the community.**
+You are welcome to place your own data models here so that they can be used by the community.
 
 ## Contributing
 Contributions to this project are welcome! If you have any suggestions or bug reports, please open an issue or pull request on GitHub.
