@@ -50,9 +50,9 @@ In this tuorial, the focus is on the following elements:
 ### Tutorial 3
 In  [tutorial 3 - Event Management](tutorial/tutorial_3/INSTRUCTIONS_TUTORIAL_3.md), a data model is created for managing event locations and the related events. An event location can have multiple events and an event can take place at multiple event locations.
 
-In this tutorial, the focus is on the following element:
+In this tutorial, the focus is on the following elements:
+- Table
 - Relationship "Many to Many" (n:m) with attributed fields
-
 
 ### Tutorial 4
 In  [tutorial 4](tutorial/tutorial_4/INSTRUCTIONS_TUTORIAL_4.md), a data model is created in which a complex attribute rule is used.
