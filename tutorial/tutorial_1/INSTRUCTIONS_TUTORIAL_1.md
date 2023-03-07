@@ -275,8 +275,8 @@ Finally, the follwoing parameters are used to define the "One to Many"-realtions
 - **destination_table**: The name of the destination table or feature class.
 - **out_relationship_class**: The name of relationship class to be created.
 - **relationship_type**: The relationship type.
-- **forward_label**: The name to identify the relationship when navigationg from the origin table to the destination table. 
-- **backward_label**: The name to identify the relationship when navigationg from the destination table to the origin table.
+- **forward_label**: The name to identify the relationship when navigating from the origin table to the destination table. 
+- **backward_label**: The name to identify the relationship when navigating from the destination table to the origin table.
 - **message_direction**: The message direction. Here, the assets should be deleted if the parent object location is deleted.
 - **cardinality**: The cardinality of the relationship.	
 - **origin_primary_key**: The primary key (field name) in the source table.
