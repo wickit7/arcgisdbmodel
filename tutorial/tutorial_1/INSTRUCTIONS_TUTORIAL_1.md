@@ -270,7 +270,7 @@ In the same way, the feature class ASSET is created. To assign a domain to a fie
 
 
 ### Relationship Class
-Finally, the follwoing parameters are used to define the 1_n-realtionship between LOCATION and ASSET.
+Finally, the follwoing parameters are used to define the "One to Many"-realtionship between LOCATION and ASSET.
 - **origin_table**: The name of the source table or feature class.
 - **destination_table**: The name of the destination table or feature class.
 - **out_relationship_class**: The name of relationship class to be created.
