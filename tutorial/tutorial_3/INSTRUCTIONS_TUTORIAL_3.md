@@ -169,5 +169,5 @@ Finally, the follwoing parameters are used to define the "Many to Many"-relation
 ```
 
 ## Example Data
-<img  src="..\img\tutorial_3_map.PNG" width=100% height=100%>
+<img  src="..\img\tutorial_3_map.PNG" width=90% height=90%>
 
