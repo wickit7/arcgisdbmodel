@@ -27,31 +27,31 @@ Example json files and instruction README files can be found in the folder [tuto
 In  [tutorial 1 - Location with assets](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_1.md), a basic data model is created for managing locations with related asstes.
 
 The focus is on the following elements:
-- general settings
-- environment settings
-- coded value domain
-- range domain
-- dataset
-- feature class
-- attribute rule (uniquie value constraint)
-- relationship "One to Many" (1:n)
-- update feature class
-    - add field
-    - calculate field
+- General settings
+- Environment settings
+- Coded value domain
+- Range domain
+- Feature Dataset
+- Feature class
+- Attribute rule (uniquie value constraint)
+- Relationship "One to Many" (1:n)
+- Update feature class
+    - Add field
+    - Valculate field
 
 ### Tutorial 2
 In  [tutorial 2 - Location Management](tutorial/tutorial_2/INSTRUCTIONS_TUTORIAL_2.md), a data model is created for managing restaurants, shops and event places with related areas.
 
 In this tuorial, the focus is on the following elements:
-- subtypes
-- domain depending on subtypes
-- relation depending on subtypes
+- Subtypes
+- Domain depending on subtypes
+- Relationship depending on subtypes
 
 ### Tutorial 3
 In  [tutorial 3 - Event Management](tutorial/tutorial_3/INSTRUCTIONS_TUTORIAL_3.md), a data model is created for managing event locations and the related events. An event location can have multiple events and an event can take place at multiple event locations.
 
 In this tutorial, the focus is on the following element:
-- "Many to Many"-Relationship (n:m) with attributed fields
+- Relationship "Many to Many" (n:m) with attributed fields
 
 
 ### Tutorial 4
@@ -60,7 +60,7 @@ In  [tutorial 4](tutorial/tutorial_4/INSTRUCTIONS_TUTORIAL_4.md), a data model i
 The focus is on the following element:
 - Attribute rule that contains multiple feature classes
 
-## Paramters
+## Parameters
 The JSON schema and the set of JSON parameters that can be used are described in the README file [PARAMETERS.md](PARAMETERS.md).
 
 ## Data Models
