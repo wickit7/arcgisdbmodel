@@ -4,7 +4,7 @@
 - A general description of how to use the script to create a data model with JSON is found in the [README.md](../../README.md) file.
 - The meaning of all parameters can be found in the [PARAMETERS.md](../../PARAMETERS.md) file.
 
-In this tutorial, the data model shown in the figure below is created using JSON. The data model is used for managing restaurants, shops and event places. Later, the data model will be updated so that locations (restaurants, shops, event) can have related areas. 
+In this tutorial, the data model shown in the figure below is created using JSON. The data model is used for managing restaurants, shops and event places. Later, the data model will be updated so that locations (restaurants, shops, event places) can have related areas. 
 
 The focus is on the following elements:
 - subtypes
