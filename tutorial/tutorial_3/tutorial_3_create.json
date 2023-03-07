@@ -1,0 +1,107 @@
+{
+   "LogFolder":"Logs",
+   "LogVersion":"v01",
+   "Conpath":"C:/Temp/tutorial_3",
+   "DBName":"event_management.gdb",
+   "Overwrite":"True",
+   "DeleteAllExisting":"True",
+   "SpatialReferenceName":"CH1903+ LV95",
+   "Datasets":[
+      {
+         "out_name":"EVENT_MANAGEMENT"
+      }
+   ],
+   "Features":[
+      {
+         "out_name":"LOCATION",
+         "geometry_type":"POINT",
+         "out_dataset":"EVENT_MANAGEMENT",
+         "GlobalID":"True",
+         "EditorTracking":"True",
+         "EnableAttachments":"True",
+         "Fields":[
+            {
+               "field_name":"LocationID",
+               "field_type":"LONG",
+               "field_alias":"Location ID"
+            },
+            {
+               "field_name":"NAME",
+               "field_type":"TEXT",
+               "field_length":"40",
+               "field_alias":"Location Name"
+            },
+            {
+               "field_name":"OWNER",
+               "field_type":"TEXT",
+               "field_length":"255",
+               "field_alias":"Owner"
+            },
+            {
+               "field_name":"DESCRIPTION",
+               "field_type":"TEXT",
+               "field_length":"512",
+               "field_alias":"Description"
+            }
+		]
+	}],
+	"Tables": [{	
+         "out_name":"EVENT",
+         "geometry_type":"POINT",
+         "out_dataset":"EVENT_MANAGEMENT",
+         "GlobalID":"True",
+         "EditorTracking":"True",
+         "EnableAttachments":"True",
+         "Fields":[
+            {
+               "field_name":"EventID",
+               "field_type":"LONG",
+               "field_alias":"Event ID"
+            },
+            {
+               "field_name":"NAME",
+               "field_type":"TEXT",
+               "field_length":"40",
+               "field_alias":"Event Name"
+            },
+            {
+               "field_name":"ORGANIZER",
+               "field_type":"TEXT",
+               "field_length":"255",
+               "field_alias":"Organizer"
+            },
+            {
+               "field_name":"DESCRIPTION",
+               "field_type":"TEXT",
+               "field_length":"512",
+               "field_alias":"Description"
+            }
+		]
+	}],
+	"Relations": [{
+					"origin_table": "EVENT",
+					"destination_table": "LOCATION",
+					"out_relationship_class": "EVENT_LOCATION_REL",
+					"relationship_type": "SIMPLE",
+					"forward_label": "Event has Locations",
+					"backward_label": "Location has Events",
+					"message_direction": "NONE",
+					"cardinality": "MANY_TO_MANY",
+					"origin_primary_key": "GlobalId",
+					"origin_foreign_key": "FEATURELINK_EVENT",
+					"destination_primary_key": "GlobalId",
+					"destination_foreign_key": "FEATURELINK_LOCATION",					
+					"AttributedFields":[{
+						"field_name": "START_DATE",
+						"field_type": "DATE",
+						"field_alias":"Start Date"
+						},
+						{
+						"field_name": "END_DATE",
+						"field_type": "DATE",
+						"field_alias":"End Date"
+						}	
+					]	
+				}
+			]	
+}
