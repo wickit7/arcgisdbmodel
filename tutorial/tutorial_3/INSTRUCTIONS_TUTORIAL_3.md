@@ -12,7 +12,7 @@ The focus is on the following elements:
 - Relationship "Many to Many" (n:m) with attributed fields
 
 ### Overview Data Model
-<img  src="..\img\tutorial_3_datamodel.jpg" width=100% height=100%>
+<img  src="..\img\tutorial_3_datamodel.jpg" width=80% height=80%>
 
 ## Create Data Model
 The datamodel is created with the JSON file [tutorial_3_create.json](tutorial_3_create.json). 
@@ -169,5 +169,5 @@ Finally, the follwoing parameters are used to define the "Many to Many"-relation
 ```
 
 ## Example Data
-<img  src="..\img\tutorial_3_map.PNG" width=60% height=60%>
+<img  src="..\img\tutorial_3_map.PNG" width=100% height=100%>
 
