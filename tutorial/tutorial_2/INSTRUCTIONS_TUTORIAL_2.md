@@ -1,4 +1,4 @@
-# Tutorial 2 - Subtypes
+# Tutorial 2 - Location Management (Subtypes)
 
 ## Introduction
 - A general description of how to use the script to create a data model with JSON is found in the [README.md](../../README.md) file.
