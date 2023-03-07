@@ -24,7 +24,7 @@ To create or update an ArcGIS data model based on a JSON input file, run the "cr
 Example json files and instruction README files can be found in the folder [tutorial](tutorial).
 
 ### Tutorial 1
-In  [tutorial 1 - Location with assets](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_1.md), a basic data model for managing locations and related asstes is created.
+In  [tutorial 1 - Location with assets](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_1.md), a basic data model is created for managing locations with related asstes.
 
 The focus is on the following elements:
 - general settings
