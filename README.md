@@ -40,7 +40,7 @@ The focus is on the following elements:
     - calculate field
 
 ### Tutorial 2
-In  [tutorial 2 - Location Management](tutorial/tutorial_2/INSTRUCTIONS_TUTORIAL_2.md), a data model for managing restaurants, shops and event places and related areas is created.
+In  [tutorial 2 - Location Management](tutorial/tutorial_2/INSTRUCTIONS_TUTORIAL_2.md), a data model is created for managing restaurants, shops and event places with related areas.
 
 In this tuorial, the focus is on the following elements:
 - subtypes
