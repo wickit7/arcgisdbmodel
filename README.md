@@ -24,7 +24,9 @@ To create or update an ArcGIS data model based on a JSON input file, run the "cr
 Example json files and instruction README files can be found in the folder [tutorial](tutorial).
 
 ### Tutorial 1
-In  [tutorial 1](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_1.md), the focus is on the following elements:
+In  [tutorial 1 - Location with assets](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_1.md), a basic data model for managing locations and related asstes is created.
+
+The focus is on the following elements:
 - general settings
 - environment settings
 - coded value domain
@@ -38,18 +40,25 @@ In  [tutorial 1](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_1.md), the focus is o
     - calculate field
 
 ### Tutorial 2
-In  [tutorial 2](tutorial/tutorial_2/INSTRUCTIONS_TUTORIAL_2.md), the focus is on the following elements:
+In  [tutorial 2 - Location Management](tutorial/tutorial_2/INSTRUCTIONS_TUTORIAL_2.md), a data model for managing restaurants, shops and event places and related areas is created.
+
+In this tuorial, the focus is on the following elements:
 - subtypes
 - domain depending on subtypes
 - relation depending on subtypes
 
 ### Tutorial 3
-In  [tutorial 3](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_3.md), the focus is on the following elements:
-- relationship "Many to Many" (n:m) with attributed fields
+In  [tutorial 3 - Event Management](tutorial/tutorial_3/INSTRUCTIONS_TUTORIAL_3.md), a data model is created for managing event locations and the related events. An event location can have multiple events and an event can take place at multiple event locations.
+
+In this tutorial, the focus is on the following element:
+- "Many to Many"-Relationship (n:m) with attributed fields
+
 
 ### Tutorial 4
-In  [tutorial 1](tutorial/tutorial_1/INSTRUCTIONS_TUTORIAL_1.md), the focus is on the following elements:
-- attribute rule depending on related feature class
+In  [tutorial 4](tutorial/tutorial_4/INSTRUCTIONS_TUTORIAL_4.md), a data model is created in which a complex attribute rule is used.
+
+The focus is on the following element:
+- Attribute rule that contains multiple feature classes
 
 ## Paramters
 The JSON schema and the set of JSON parameters that can be used are described in the README file [PARAMETERS.md](PARAMETERS.md).
