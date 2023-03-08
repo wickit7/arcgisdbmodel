@@ -10,7 +10,7 @@
 #
 # Author: Timo Wicki, City of Lucerne
 #
-# Created: 14.06.2021
+# Created: 02.01.2023
 # -----------------------------------------------------------------------------
 import sys, os, logging, json, time
 import arcpy
