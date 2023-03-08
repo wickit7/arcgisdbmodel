@@ -8,8 +8,7 @@ In this tutorial, the data model shown in the figure below is created using JSON
 - Attribute rules to edit related feature classes
 - Attribute rule that contains multiple feature classes
 
-Actually, it is not necessary to edit the related features using attribute rules, as this is done by the relationship class. For example in ArcGIS Pro editing tools are available that allow the editing of feature relationships. 
-In certain web applications (e.g. Web AppBuilder) such editing tools are not or not yet available. In this case editing realtionships with attribute rules can be an alternative. 
+Actually, it is not necessary to edit related features with the help of attribute rules, since the relationship class is usually sufficient. For example in ArcGIS Pro editing tools are available that allow the editing of related features based on the realtionship class only.  In certain web applications (e.g. Web AppBuilder) such editing tools are not or not yet available. In this case editing realtionships with the help of attribute rules can useful. 
 
 
 ### Overview Data Model
@@ -17,8 +16,8 @@ In certain web applications (e.g. Web AppBuilder) such editing tools are not or 
 
 ## Create Data Model
 The datamodel is created with the JSON file [tutorial_4_create.json](tutorial_4_create.json). 
-### General Settings
-In the general settings, the path to the log file, the path to the database and other properties are specified (see tutorial 1).
+### General Settings, Domains, Datasets
+The general settings, a domain and a dataset are specified in the first part of the JSON (see tutorial 1).
 
 ```json
 {
@@ -29,13 +28,6 @@ In the general settings, the path to the log file, the path to the database and 
     "Overwrite":"True",
     "DeleteAllExisting":"True",
     "SpatialReferenceName":"CH1903+ LV95",
-  
-```
-
-### Coded Value Domain
-For the feature class "asset", a coded value domains with certain possible values is created (see tutorial 1).
-
-```json
     "Domains":[
         {
             "domain_name":"AssetType",
@@ -50,20 +42,15 @@ For the feature class "asset", a coded value domains with certain possible value
             }
         }
     ],
-```
-
-### Dataset
-The dataset is specified by defining the name.
-
-```json
-	"Datasets": [{
-				"out_name": "INFRASTRUCTURE"
-			}
-		],
+    "Datasets":[
+        {
+            "out_name":"INFRASTRUCTURE"
+        }
+    ],
 ```
 
 ### Feature Class LOCATION
-The feature class is created by defining general settings and fields (see tutorial 1).
+The feature class "LOCATION" is created by defining general settings and fields (see tutorial 1).
 
 ```json
     "Features":[
@@ -97,13 +84,13 @@ The feature class is created by defining general settings and fields (see tutori
 ```
 
 ### Feature Class ASSET
-In the same way, the feature class ASSET is created. Additionally attribute rules are created, that allow editing realted data without special editing tools.
+In the same way, the feature class "ASSET" is created. Additionally attribute rules are created, that allow editing related features without special editing tools.
 
 **Attribute Rule "UPDATE_FEATURELINK"**
 This attribute rule is used to automatically update the field "FEATURELINK" of the child objects "ASSET" with the GlobalID of the parent feature "LOCATION" when the  LocationID in the parent feature "LOCATION" is edited.
 
 **Attribute Rule "UPDATE_LocationID"**
-This attribute rule is used to automatically update the field "LocationID" with the LocationID of the parent feature "Location" when a child object "ASSET" is created with editing tools for editing feature relationships (e.g. in ArcGIS Pro), where the "FEATURELINK" is filled in automatically.
+This attribute rule is used to automatically update the field "LocationID" with the LocationID of the parent feature "Location" when a child object "ASSET" is created with special editing tools that make use of the relationship class (e.g. in ArcGIS Pro), where the "FEATURELINK" is filled in automatically.
 
 - **script_expression**: An [Arcade script expression](https://pro.arcgis.com/en/pro-app/latest/help/data/geodatabases/overview/attribute-rule-script-expression.htm). 
 
@@ -184,7 +171,7 @@ A "One to Many"-realtionship class is created between LOCATION and ASSET (see tu
 ```
 
 ## Attribute rule depending on multiple feature classes
-The attribute rule that depends on the feature classes "LOCATION" and "ASSET" must be included in the "UpdateFeatures" section of the JSON file, so it is created when the feature classes already exist. The Attribute rule **"UPDATE_LocationID_CHILD"** updates the "LocationID" of all child fetures "ASSET" when the value of the "LocationID" is edited in the parent feature "LOCATION".
+The attribute rule that depends on the feature classes "LOCATION" and "ASSET" must be included in the "UpdateFeatures" section of the JSON file, so it is created when the feature classes already exist. The Attribute rule **"UPDATE_LocationID_CHILD"** updates the "LocationID" of all child features "ASSET" when the value of the "LocationID" is edited in the parent feature "LOCATION".
 
 ```json
     "UpdateFeatures":[
