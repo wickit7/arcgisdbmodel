@@ -40,7 +40,9 @@ The feature class "ROAD" is created by defining general settings, subtypes, fiel
 - **subtype**: This parameter specifies for which subtype the rule is to be active.
 
 **Attribute Rule "CALCULATE_COST_1"**: The attribute rule is used to estimate the cost of road surfaces to be built with asphalt. It is assumed that 1m<sup>2</sup> of road construction costs 60$.
+
 **Attribute Rule "CALCULATE_COST_2"**: The attribute rule is used to estimate the cost of road surfaces to be built with concrete. It is assumed that 1m<sup>2</sup> of road construction costs 80$.
+
 **Attribute Rule "CALCULATE_COST_3"**: The attribute rule is used to estimate the cost of road surfaces to be built with cobblestone. It is assumed that 1m<sup>2</sup> of road construction costs 100$.
 
 ```json
