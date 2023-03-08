@@ -7,9 +7,9 @@
 In this tutorial, the data model shown in the figure below is created using JSON. The data model is used for managing restaurants, shops and event places. Later, the data model will be updated so that locations (restaurants, shops, event places) can have related areas. 
 
 The focus is on the following elements:
-- subtypes
-- domain depending on subtypes
-- relation depending on subtypes
+- Subtypes
+- Domain depending on subtypes
+- Relationship depending on subtypes
 
 ### Overview Data Model v01
 <img  src="..\img\tutorial_2_datamodel_v01.jpg" width=80% height=80%>
