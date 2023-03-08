@@ -1,0 +1,81 @@
+{
+   "LogFolder":"Logs",
+   "LogVersion":"v01",
+   "Conpath":"C:/Temp/tutorial_5",
+   "DBName":"street_management.gdb",
+   "Overwrite":"True",
+   "DeleteAllExisting":"True",
+   "SpatialReferenceName":"CH1903+ LV95",
+   "Datasets":[
+      {
+         "out_name":"STREET_MANAGEMENT"
+      }
+   ],
+   "Features":[
+      {
+         "out_name":"STREET",
+         "geometry_type":"POLYGON",
+         "out_dataset":"STREET_MANAGEMENT",
+         "GlobalID":"True",
+         "EditorTracking":"False",
+         "EnableAttachments":"False",
+         "Subtypes":{
+            "field_name":"TYP",
+            "SubtypeValues":{
+               "1":"Asphalt",
+               "2":"Concrete",
+               "3":"Cobblestone"
+            },
+            "DefaultSubtypeCode":"1"
+         },
+         "Fields":[
+            {
+               "field_name":"NAME",
+               "field_type":"TEXT",
+               "field_length":"40",
+               "field_alias":"Name"
+            },
+            {
+               "field_name":"DESCRIPTION",
+               "field_type":"TEXT",
+               "field_length":"512",
+               "field_alias":"Description"
+            },
+            {
+               "field_name":"COST",
+               "field_type":"DOUBLE",
+               "field_alias":"Cost"
+            }
+		],
+		"AttributeRules": [
+			{
+			"name": "CALCULATE_COST_1",
+			"type": "CALCULATION",
+			"script_expression":"return $feature['Shape_Area']*60",
+			"triggering_events": "INSERT;UPDATE",
+			"description": "Calculation of costs based on area and cost per square metre for asphalt",
+			"field": "COST",
+			"subtype": "Asphalt"
+			},
+			{
+			"name": "CALCULATE_COST_2",
+			"type": "CALCULATION",
+			"script_expression":"return $feature['Shape_Area']*80",
+			"triggering_events": "INSERT;UPDATE",
+			"description": "Calculation of costs based on area and cost per square metre for concrete",
+			"field": "COST",
+			"subtype": "Concrete"
+			},
+			{
+			"name": "CALCULATE_COST_3",
+			"type": "CALCULATION",
+			"script_expression":"return $feature['Shape_Area']*100",
+			"triggering_events": "INSERT;UPDATE",
+			"description": "Calculation of costs based on area and cost per square metre for cobblestone",
+			"field": "COST",
+			"subtype": "Cobblestone"
+			}
+		]
+	}
+	]
+}
