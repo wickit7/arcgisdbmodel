@@ -2,7 +2,7 @@
    "LogFolder":"Logs",
    "LogVersion":"v01",
    "Conpath":"C:/Temp/tutorial_5",
-   "DBName":"street_management.gdb",
+   "DBName":"road_management.gdb",
    "Overwrite":"True",
    "DeleteAllExisting":"True",
    "SpatialReferenceName":"CH1903+ LV95",
