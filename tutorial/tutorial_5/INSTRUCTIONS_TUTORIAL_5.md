@@ -10,7 +10,7 @@ The focus is on the following element:
 - Attribute rules depending on subtypes
 
 ### Overview Data Model
-<img  src="..\img\tutorial_5_datamodel.jpg" width=50% height=50%>
+<img  src="..\img\tutorial_5_datamodel.jpg" width=30% height=30%>
 
 ## Create Data Model
 The datamodel is created with the JSON file [tutorial_5_create.json](tutorial_5_create.json). 
