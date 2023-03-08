@@ -18,7 +18,7 @@ In this tutorial, the data model shown in the figure below is created using JSON
 - Calculate field
 
 ### Overview Data Model
-<img  src="..\img\tutorial_1_datamodel.jpg" width=100% height=100%>
+<img  src="..\img\tutorial_1_datamodel.jpg" width=90% height=90%>
 
 ## Create Data Model
 The datamodel is created with the JSON file [tutorial_1_create.json](tutorial_1_create.json). 
