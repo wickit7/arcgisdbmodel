@@ -177,7 +177,7 @@ The follwing parameters are used to create the fields of the feature classes:
 An attribute rule is created to prevent the user from defining the same "LocationID" for two different features.
 - **name**: The name of the rule.
 - **type**: The type of the rule. 
-- **script_expression**: An Arcade script expression. 
+- **script_expression**: An [Arcade script expression](https://pro.arcgis.com/en/pro-app/latest/help/data/geodatabases/overview/attribute-rule-script-expression.htm). 
 - **triggering_events**: Secify when the rule is triggered.
 - **description**: The description of the rule.
 - **error_number**: An error number that is returned when the rule is violated.
