@@ -8,14 +8,14 @@
    "SpatialReferenceName":"CH1903+ LV95",
    "Datasets":[
       {
-         "out_name":"STREET_MANAGEMENT"
+         "out_name":"ROAD_MANAGEMENT"
       }
    ],
    "Features":[
       {
-         "out_name":"STREET",
+         "out_name":"ROAD",
          "geometry_type":"POLYGON",
-         "out_dataset":"STREET_MANAGEMENT",
+         "out_dataset":"ROAD_MANAGEMENT",
          "GlobalID":"True",
          "EditorTracking":"False",
          "EnableAttachments":"False",
