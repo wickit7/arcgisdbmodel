@@ -57,9 +57,15 @@ In this tutorial, the focus is on the following elements:
 ### Tutorial 4
 In  [tutorial 4 - Relationship editing with attribute rules](tutorial/tutorial_4/INSTRUCTIONS_TUTORIAL_4.md), a data model is created with complex attribute rules.
 
-The focus is on the following element:
+The focus is on the following elements:
 - Attribute rule that contains multiple feature classes
 - Attribute rules to edit related feature classes
+
+### Tutorial 5
+In  [tutorial 5 - Estimation of road construction costs](tutorial/tutorial_5/INSTRUCTIONS_TUTORIAL_5.md), a data model is created to estimate road construction costs depending on the road material.
+
+The focus is on the following element:
+- Attribute rules depending on subtypes
 
 ## Parameters
 The JSON schema and the set of JSON parameters that can be used are described in the README file [PARAMETERS.md](PARAMETERS.md).
