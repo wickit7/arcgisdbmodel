@@ -1,5 +1,5 @@
 # JSON file input parameters
-
+- A general description of how to use the script to create a data model with JSON is found in the [README.md](../../README.md) file.
 - The implemented functions (e.g. "add_field()") include all parameters of the corresponding ArcGIS function (e.g. "AddField()") and possibly  additional parameters.
 - Example JSON files are found in the [tutorial](tutorial) folder.
 
