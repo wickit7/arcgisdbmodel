@@ -5,17 +5,17 @@
 - The meaning of all parameters can be found in the [PARAMETERS.md](../../PARAMETERS.md) file.
 
 In this tutorial, the data model shown in the figure below is created using JSON. The focus is on the following elements:
-- general settings
-- environment settings
-- create coded value domain
-- create range domain
-- create dataset
-- create feature class
-- create attribute rule (uniquie value constraint)
-- create relationship (1:n)
-- update feature class
-    - add field
-    - calculate field
+- General settings
+- Environment settings
+- Coded value domain
+- Range domain
+- Feature Dataset
+- Feature class
+- Attribute rule (uniquie value constraint)
+- Relationship "One to Many" (1:n)
+- Update feature class
+- Add field
+- Calculate field
 
 ### Overview Data Model
 <img  src="..\img\tutorial_1_datamodel.jpg" width=100% height=100%>
@@ -55,7 +55,7 @@ The default environment settings can be optionally adjusted, i.e. the XY Toleran
   
 ```
 ### Coded Value Domains
-For the feature class "asset", two coded value domains with certain possible values are needed. In the feature class "Fields"-section the corresponding field of the feature class is linked to the domain.
+For the feature class "ASSET", two coded value domains with certain possible values are needed. In the feature class "Fields"-section the corresponding field of the feature class is linked to the domain.
 To create the coded value domains, the following parameters are used:
 - **domain_name**: The name of the domain. 
 - **domain_description**: The description of the domain. (optional)	
@@ -97,7 +97,7 @@ In contrast to the coded value domain, the minimum and maximum value of the rang
 
 ### Dataset
 The dataset is specified by defining the name.
-- **out_name**: The name of the domain.
+- **out_name**: The name of the dataset.
 
 ```json
 	"Datasets": [{
@@ -110,11 +110,11 @@ The dataset is specified by defining the name.
 The feature classes are created by defining general settings, fields and attribute rules.
 Here, the follwing parameters are used to define general settings:
 - **out_name**: The name of the feature class.
-- **geometry_type**: The geometry type, which is in this case is Polygon.
-- **out_dataset**: The name of the output data set in which the feature class is to be created.
-- **GlobalID**: Specify whether the feature class shuold have a GlobalID field.	The field is not defined in the "Fields" section, it will be created automatically.
+- **geometry_type**: The geometry type, which in this case is Polygon.
+- **out_dataset**: The name of the output dataset in which the feature class is to be created.
+- **GlobalID**: Specify whether the feature class should have a GlobalID field.	The field is not defined in the "Fields" section, it will be created automatically.
 - **EditorTracking**: Specify whether editor tracking should be activated for the feature class. The fields "CREATED_USER", "CREATED_DATE", "LAST_EDITED_USER", "LAST_EDITED_DATE" are created.
-- **EnableAttachments**: Specify whether upload attachments should be enabled for the feature class.
+- **EnableAttachments**: Specify whether upload attachments (images, pdfs) should be enabled for the feature class.
 
 ```json
 	"Features": [
@@ -178,7 +178,7 @@ An attribute rule is created to prevent the user from defining the same "Locatio
 - **name**: The name of the rule.
 - **type**: The type of the rule. 
 - **script_expression**: An [Arcade script expression](https://pro.arcgis.com/en/pro-app/latest/help/data/geodatabases/overview/attribute-rule-script-expression.htm). 
-- **triggering_events**: Secify when the rule is triggered.
+- **triggering_events**: Specify when the rule is triggered.
 - **description**: The description of the rule.
 - **error_number**: An error number that is returned when the rule is violated.
 - **error_message**: An error message returned if the rule is violated.
@@ -200,7 +200,7 @@ An attribute rule is created to prevent the user from defining the same "Locatio
 ```	
 
 ### Feature Class ASSET
-In the same way, the feature class ASSET is created. To assign a domain to a field, the parameter "field_domain is used".
+In the same way, the feature class "ASSET" is created. To assign a domain to a field, the parameter "field_domain" is used.
 - **field_domain**: The name of the domain to be used for the field.
 
 ```json
@@ -273,14 +273,14 @@ In the same way, the feature class ASSET is created. To assign a domain to a fie
 Finally, the follwoing parameters are used to define the "One to Many"-realtionship between LOCATION and ASSET.
 - **origin_table**: The name of the source table or feature class.
 - **destination_table**: The name of the destination table or feature class.
-- **out_relationship_class**: The name of relationship class to be created.
+- **out_relationship_class**: The name of the relationship class to be created.
 - **relationship_type**: The relationship type.
 - **forward_label**: The name to identify the relationship when navigating from the origin table to the destination table. 
 - **backward_label**: The name to identify the relationship when navigating from the destination table to the origin table.
 - **message_direction**: The message direction. Here, the assets should be deleted if the parent object location is deleted.
 - **cardinality**: The cardinality of the relationship.	
 - **origin_primary_key**: The primary key (field name) in the source table.
-- **origin_foreign_key**: The field name in the destiation table that stores the primary key of the source table.
+- **origin_foreign_key**: The field name in the destination table that stores the primary key of the source table.
 
 ```json
 	"Relations": [{
@@ -302,7 +302,7 @@ Finally, the follwoing parameters are used to define the "One to Many"-realtions
 ## Update Data Model
 The data model is updated with the JSON file [tutorial_1_update.json](tutorial_1_update.json).
 
-At a later stage, there is a requirement to add a new attribute STATE to the feature class LOCATION. The existing data entries are to be populated with the value "Switzerland". A simple calculation expression is used to create a value that will populate existing rows.  As you can see, the "LogVersion" is set to "v02" and "DeleteAllExisting" is set to "False". 
+At a later stage, there is a requirement to add a new attribute "STATE" to the feature class "LOCATION". The existing data entries are to be populated with the value "Switzerland". A simple calculation expression is used to create a value that will populate existing rows.  As you can see, the "LogVersion" is set to "v02" and "DeleteAllExisting" is set to "False". 
 
 ```json
 {
