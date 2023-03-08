@@ -13,10 +13,10 @@ In certain web applications (e.g. Web AppBuilder) such editing tools are not or 
 
 
 ### Overview Data Model
-<img  src="..\img\tutorial_4_datamodel.jpg" width=100% height=100%>
+<img  src="..\img\tutorial_4_datamodel.jpg" width=80% height=80%>
 
 ## Create Data Model
-The datamodel is created with the JSON file [tutorial_1_create.json](tutorial_1_create.json). 
+The datamodel is created with the JSON file [tutorial_4_create.json](tutorial_4_create.json). 
 ### General Settings
 In the general settings, the path to the log file, the path to the database and other properties are specified (see tutorial 1).
 
@@ -34,7 +34,6 @@ In the general settings, the path to the log file, the path to the database and 
 
 ### Coded Value Domain
 For the feature class "asset", a coded value domains with certain possible values is created (see tutorial 1).
-
 
 ```json
     "Domains":[
@@ -64,7 +63,7 @@ The dataset is specified by defining the name.
 ```
 
 ### Feature Class LOCATION
-The feature classes is created by defining general settings and fields (see tutorial 1).
+The feature class is created by defining general settings and fields (see tutorial 1).
 
 ```json
     "Features":[
@@ -98,7 +97,16 @@ The feature classes is created by defining general settings and fields (see tuto
 ```
 
 ### Feature Class ASSET
-In the same way, the feature class ASSET is created. 
+In the same way, the feature class ASSET is created. Additionally attribute rules are created, that allow editing realted data without special editing tools.
+
+**Attribute Rule "UPDATE_FEATURELINK"**
+This attribute rule is used to automatically update the field "FEATURELINK" of the child objects "ASSET" with the GlobalID of the parent feature "LOCATION" when the  LocationID in the parent feature "LOCATION" is edited.
+
+**Attribute Rule "UPDATE_LocationID"**
+This attribute rule is used to automatically update the field "LocationID" with the LocationID of the parent feature "Location" when a child object "ASSET" is created with editing tools for editing feature relationships (e.g. in ArcGIS Pro), where the "FEATURELINK" is filled in automatically.
+
+- **script_expression**: An [Arcade script expression](https://pro.arcgis.com/en/pro-app/latest/help/data/geodatabases/overview/attribute-rule-script-expression.htm). 
+
 ```json
         {
             "out_name":"ASSET",
@@ -156,17 +164,7 @@ In the same way, the feature class ASSET is created.
 
 
 ### Relationship Class
-Finally, the follwoing parameters are used to define the "One to Many"-realtionship between LOCATION and ASSET.
-- **origin_table**: The name of the source table or feature class.
-- **destination_table**: The name of the destination table or feature class.
-- **out_relationship_class**: The name of relationship class to be created.
-- **relationship_type**: The relationship type.
-- **forward_label**: The name to identify the relationship when navigating from the origin table to the destination table. 
-- **backward_label**: The name to identify the relationship when navigating from the destination table to the origin table.
-- **message_direction**: The message direction. Here, the assets should be deleted if the parent object location is deleted.
-- **cardinality**: The cardinality of the relationship.	
-- **origin_primary_key**: The primary key (field name) in the source table.
-- **origin_foreign_key**: The field name in the destiation table that stores the primary key of the source table.
+A "One to Many"-realtionship class is created between LOCATION and ASSET (see tutorial 1).
 
 ```json
     "Relations":[
@@ -186,9 +184,7 @@ Finally, the follwoing parameters are used to define the "One to Many"-realtions
 ```
 
 ## Attribute rule depending on multiple feature classes
-The data model is updated with the JSON file [tutorial_1_update.json](tutorial_1_update.json).
-
-At a later stage, there is a requirement to add a new attribute STATE to the feature class LOCATION. The existing data entries are to be populated with the value "Switzerland". A simple calculation expression is used to create a value that will populate existing rows.  As you can see, the "LogVersion" is set to "v02" and "DeleteAllExisting" is set to "False". 
+The attribute rule that depends on the feature classes "LOCATION" and "ASSET" must be included in the "UpdateFeatures" section of the JSON file, so it is created when the feature classes already exist. The Attribute rule **"UPDATE_LocationID_CHILD"** updates the "LocationID" of all child fetures "ASSET" when the value of the "LocationID" is edited in the parent feature "LOCATION".
 
 ```json
     "UpdateFeatures":[
@@ -212,5 +208,5 @@ At a later stage, there is a requirement to add a new attribute STATE to the fea
 ```
 
 ## Example Data
-<img  src="..\img\tutorial_4_map.PNG" width=60% height=60%>
+<img  src="..\img\tutorial_4_map.PNG" width=80% height=80%>
 
