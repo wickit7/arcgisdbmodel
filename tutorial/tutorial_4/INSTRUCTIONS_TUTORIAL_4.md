@@ -86,10 +86,10 @@ The feature class "LOCATION" is created by defining general settings and fields 
 ### Feature Class ASSET
 In the same way, the feature class "ASSET" is created. Additionally attribute rules are created, that allow editing related features without special editing tools.
 
-**Attribute Rule "UPDATE_FEATURELINK"**
+**Attribute Rule "UPDATE_FEATURELINK"**:
 This attribute rule is used to automatically update the field "FEATURELINK" of the child objects "ASSET" with the GlobalID of the parent feature "LOCATION" when the  LocationID in the parent feature "LOCATION" is edited.
 
-**Attribute Rule "UPDATE_LocationID"**
+**Attribute Rule "UPDATE_LocationID"**:
 This attribute rule is used to automatically update the field "LocationID" with the LocationID of the parent feature "Location" when a child object "ASSET" is created with special editing tools that make use of the relationship class (e.g. in ArcGIS Pro), where the "FEATURELINK" is filled in automatically.
 
 - **script_expression**: An [Arcade script expression](https://pro.arcgis.com/en/pro-app/latest/help/data/geodatabases/overview/attribute-rule-script-expression.htm). 
