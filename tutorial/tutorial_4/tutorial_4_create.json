@@ -1,0 +1,138 @@
+{
+    "LogFolder":"Logs",
+    "LogVersion":"v01",
+    "Conpath":"C:/Temp/tutorial_4",
+    "DBName":"asset_management.gdb",
+    "Overwrite":"True",
+    "DeleteAllExisting":"True",
+    "SpatialReferenceName":"CH1903+ LV95",
+    "Domains":[
+        {
+            "domain_name":"AssetType",
+            "domain_description":"Type of the asset",
+            "field_type":"SHORT",
+            "domain_type":"CODED",
+            "DomainValues":{
+                "0":"unknown",
+                "1":"street light",
+                "2":"traffic signal",
+                "3":"fire hydrant"
+            }
+        }
+    ],
+    "Datasets":[
+        {
+            "out_name":"INFRASTRUCTURE"
+        }
+    ],
+    "Features":[
+        {
+            "out_name":"LOCATION",
+            "geometry_type":"POLYGON",
+            "out_dataset":"INFRASTRUCTURE",
+            "GlobalID":"True",
+            "EditorTracking":"False",
+            "EnableAttachments":"False",
+            "Fields":[
+                {
+                    "field_name":"LocationID",
+                    "field_type":"LONG",
+                    "field_alias":"Location ID"
+                },
+                {
+                    "field_name":"NAME",
+                    "field_type":"TEXT",
+                    "field_length":"40",
+                    "field_alias":"Location Name"
+                },
+                {
+                    "field_name":"DESCRIPTION",
+                    "field_type":"TEXT",
+                    "field_length":"512",
+                    "field_alias":"Description"
+                }
+            ]
+        },
+        {
+            "out_name":"ASSET",
+            "geometry_type":"POINT",
+            "out_dataset":"INFRASTRUCTURE",
+            "GlobalID":"True",
+            "EditorTracking":"False",
+            "EnableAttachments":"False",
+            "Fields":[
+                {
+                    "field_name":"AssetID",
+                    "field_type":"LONG",
+                    "field_alias":"Asset ID"
+                },
+                {
+                    "field_name":"LocationID",
+                    "field_type":"LONG",
+                    "field_alias":"Location ID"
+                },
+                {
+                    "field_name":"TYPE",
+                    "field_type":"SHORT",
+                    "field_domain":"AssetType",
+                    "field_alias":"Asset Type"
+                },
+                {
+                    "field_name":"FEATURELINK",
+                    "field_type":"GUID",
+                    "field_alias":"Location Reference"
+                }
+            ],
+            "AttributeRules":[
+                {
+                    "name":"UPDATE_FEATURELINK",
+                    "type":"CALCULATION",
+                    "script_expression":"var origID = $originalFeature.LocationID;  var newID = $feature.LocationID;  if (newID != origID) { if (IsEmpty(newID)) return NULL;     var parent_fc = FeatureSetByName($datastore,'LOCATION',['LocationID', 'GlobalID'],false);      var parent_selection = Filter(parent_fc, 'LocationID = @newID');      if (Count(parent_selection)>0) {          return First(parent_selection).GlobalID;     } else  {          return {'errorMessage': 'There is no parent feature (location) with this LocationID!'};     }  } else {     return $feature.FEATURELINK; } ",
+                    "triggering_events":"UPDATE",
+                    "description":"Update FEATURELINK of the child object (asset) with the GlobalID of the parent feature (location) by entering the LocationID",
+                    "field":"FEATURELINK",
+                    "exclude_from_client_evaluation":"EXCLUDE"
+                },
+                {
+                    "name":"UPDATE_LocationID",
+                    "type":"CALCULATION",
+                    "script_expression":"var origFeaturelink = $originalFeature.FEATURELINK;  var newFeaturelink = $feature.FEATURELINK;  if (newFeaturelink != origFeaturelink){     if (IsEmpty(newFeaturelink)) return NULL;     var parent_fc = FeatureSetByName($datastore,'LOCATION',['LocationID', 'GlobalID'],false);      var parent_selection = Filter(parent_fc, 'GlobalID = @newFeaturelink');      if (Count(parent_selection)>0) {          return First(parent_selection).LocationID      } else {          return {'errorMessage': 'No referenced parent feature (location) could be found!'}      }  } else {     return $feature.LocationID }",
+                    "triggering_events":"INSERT;UPDATE",
+                    "description":"Update LocationID with the LocationID of the parent feature (location) when creating the child object (asset)",
+                    "field":"LocationID",
+                    "exclude_from_client_evaluation":"EXCLUDE"
+                }
+            ]
+        }
+    ],
+    "Relations":[
+        {
+            "origin_table":"LOCATION",
+            "destination_table":"ASSET",
+            "out_relationship_class":"LOCATION_ASSET_REL",
+            "relationship_type":"COMPOSITE",
+            "forward_label":"Loction has Assets",
+            "backward_label":"Asset belongs to a location",
+            "message_direction":"FORWARD",
+            "cardinality":"ONE_TO_MANY",
+            "origin_primary_key":"GlobalId",
+            "origin_foreign_key":"FEATURELINK"
+        }
+    ],
+    "UpdateFeatures":[
+        {
+            "in_table":"LOCATION",
+            "AttributeRules":[
+                {
+                    "name":"UPDATE_LocationID_CHILD",
+                    "type":"CALCULATION",
+                    "script_expression":"var origID =  $originalFeature.LocationID; var newID = $feature.LocationID; if (newID==origID) {     return origID; } else {     var updates = [];     var counter = 0;     var globalId = $feature.globalid;     var child_fc = FeatureSetbyName($datastore, 'ASSET', ['FEATURELINK', 'LocationID', 'GlobalID'], false);     var child_selection = filter(child_fc, 'FEATURELINK = @globalId');     if (count(child_selection) > 0) {         for (var child in child_selection) {             updates[counter] = {'globalID': child.GlobalID,                                 'attributes': {                                     'LocationID': newID                                     }                                 };            counter++;         }     return {'result': newID,             'edit':[{'className': 'Asset',                      'updates': updates}]};    } else {         return newID;    } } ",
+                    "triggering_events":"INSERT;UPDATE",
+                    "description":"Update  'LocationID' of all child objects (assets) when 'LocatonID' of parent object (location) changes",
+                    "field":"LocationID",
+                    "exclude_from_client_evaluation":"EXCLUDE"
+                }
+            ]
+        }
+    ]
+}
