@@ -37,7 +37,7 @@ The focus is on the following elements:
 - Relationship "One to Many" (1:n)
 - Update feature class
     - Add field
-    - Valculate field
+    - Calculate field
 
 ### Tutorial 2
 In  [tutorial 2 - Location Management](tutorial/tutorial_2/INSTRUCTIONS_TUTORIAL_2.md), a data model is created for managing restaurants, shops and event places with related areas.
