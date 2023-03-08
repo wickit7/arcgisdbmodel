@@ -8,7 +8,7 @@ In this tutorial, the data model shown in the figure below is created using JSON
 - Attribute rules to edit related feature classes
 - Attribute rule that contains multiple feature classes
 
-Actually, it is not necessary to edit related features with the help of attribute rules, since the relationship class is usually sufficient. For example in ArcGIS Pro editing tools are available that allow the editing of related features based on the realtionship class only.  In certain web applications (e.g. Web AppBuilder) such editing tools are not or not yet available. In this case editing realtionships with the help of attribute rules can useful. 
+Actually, it is not necessary to edit related features with the help of attribute rules, since the relationship class is usually sufficient. For example in ArcGIS Pro editing tools are available that allow the editing of related features based on the realtionship class only.  In certain web applications (e.g. Web AppBuilder) such editing tools are not or not yet available. In this case editing relationships with the help of attribute rules can be useful. 
 
 
 ### Overview Data Model
@@ -87,7 +87,7 @@ The feature class "LOCATION" is created by defining general settings and fields 
 In the same way, the feature class "ASSET" is created. Additionally attribute rules are created, that allow editing related features without special editing tools.
 
 **Attribute Rule "UPDATE_FEATURELINK"**:
-This attribute rule is used to automatically update the field "FEATURELINK" of the child objects "ASSET" with the GlobalID of the parent feature "LOCATION" when the  LocationID in the parent feature "LOCATION" is edited.
+This attribute rule is used to automatically update the field "FEATURELINK" of the child objects "ASSET" with the GlobalID of the parent feature "LOCATION". The rule is triggered when the  LocationID in the parent feature "LOCATION" is edited.
 
 **Attribute Rule "UPDATE_LocationID"**:
 This attribute rule is used to automatically update the field "LocationID" with the LocationID of the parent feature "Location" when a child object "ASSET" is created with special editing tools that make use of the relationship class (e.g. in ArcGIS Pro), where the "FEATURELINK" is filled in automatically.
@@ -151,7 +151,7 @@ This attribute rule is used to automatically update the field "LocationID" with 
 
 
 ### Relationship Class
-A "One to Many"-realtionship class is created between LOCATION and ASSET (see tutorial 1).
+A "One to Many"-relationship class is created between "LOCATION" and "ASSET" (see tutorial 1).
 
 ```json
     "Relations":[
@@ -195,5 +195,5 @@ The attribute rule that depends on the feature classes "LOCATION" and "ASSET" mu
 ```
 
 ## Example Data
-<img  src="..\img\tutorial_4_map.PNG" width=80% height=80%>
+<img  src="..\img\tutorial_4_map.PNG" width=70% height=70%>
 
