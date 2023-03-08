@@ -43,7 +43,7 @@ The dataset is specified by defining the name.
 ```
 
 ### Feature Class
-The feature classe LOCATION is created by defining general settings and fields.
+The feature classe "LOCATION" is created by defining general settings and fields.
 
 ```json
    "Features":[
@@ -84,7 +84,7 @@ The feature classe LOCATION is created by defining general settings and fields.
 
 
 ### Table
-The table EVENT is created by defining general settings and fields.
+The table "EVENT" is created by defining general settings and fields.
 
 ```json
 	"Tables": [{	
@@ -123,10 +123,10 @@ The table EVENT is created by defining general settings and fields.
 ```
 
 ### Relationship Class "Many to Many"
-Finally, the follwoing parameters are used to define the "Many to Many"-relationship between LOCATION and EVENT.
+Finally, the follwoing parameters are used to define the "Many to Many"-relationship between "LOCATION" and "EVENT".
 - **origin_table**: The name of the source table or feature class.
 - **destination_table**: The name of the destination table or feature class.
-- **out_relationship_class**: The name of relationship class to be created.
+- **out_relationship_class**: The name of the relationship class to be created.
 - **relationship_type**: The relationship type.
 - **forward_label**: The name to identify the relationship when navigating from the origin table to the destination table. 
 - **backward_label**: The name to identify the relationship when navigating from the destination table to the origin table.
