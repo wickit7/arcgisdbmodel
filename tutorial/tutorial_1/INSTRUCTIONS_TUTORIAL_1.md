@@ -55,7 +55,7 @@ The default environment settings can be optionally adjusted, i.e. the XY Toleran
   
 ```
 ### Coded Value Domains
-For the feture class "asset", two coded value domains with certain possible values are needed. In the feature class "Fields"-section the corresponding field of the feature class is linked to the domain.
+For the feature class "asset", two coded value domains with certain possible values are needed. In the feature class "Fields"-section the corresponding field of the feature class is linked to the domain.
 To create the coded value domains, the following parameters are used:
 - **domain_name**: The name of the domain. 
 - **domain_description**: The description of the domain. (optional)	
