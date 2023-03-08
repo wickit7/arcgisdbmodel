@@ -55,10 +55,11 @@ In this tutorial, the focus is on the following elements:
 - Relationship "Many to Many" (n:m) with attributed fields
 
 ### Tutorial 4
-In  [tutorial 4](tutorial/tutorial_4/INSTRUCTIONS_TUTORIAL_4.md), a data model is created in which a complex attribute rule is used.
+In  [tutorial 4 - Relationship editing with attribute rules](tutorial/tutorial_4/INSTRUCTIONS_TUTORIAL_4.md), a data model is created with complex attribute rules.
 
 The focus is on the following element:
 - Attribute rule that contains multiple feature classes
+- Attribute rules to edit related feature classes
 
 ## Parameters
 The JSON schema and the set of JSON parameters that can be used are described in the README file [PARAMETERS.md](PARAMETERS.md).
