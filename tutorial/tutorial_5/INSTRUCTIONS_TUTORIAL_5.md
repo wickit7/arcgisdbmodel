@@ -9,8 +9,8 @@ In this tutorial, the data model shown in the figure below is created using JSON
 The focus is on the following element:
 - Attribute rules depending on subtypes
 
-### Overview Data Model v01
-<img  src="..\img\tutorial_5_datamodel.jpg" width=80% height=80%>
+### Overview Data Model
+<img  src="..\img\tutorial_5_datamodel.jpg" width=50% height=50%>
 
 ## Create Data Model
 The datamodel is created with the JSON file [tutorial_5_create.json](tutorial_5_create.json). 
@@ -115,5 +115,5 @@ The feature class "ROAD" is created by defining general settings, subtypes, fiel
 ```
 
 ## Example Data
-<img  src="..\img\tutorial_5_map.PNG" width=80% height=80%>
+<img  src="..\img\tutorial_5_map.PNG" width=70% height=70%>
 
