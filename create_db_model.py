@@ -1200,7 +1200,7 @@ if __name__ == "__main__":
     end_time = time.time()
     i_error = search(log, "error")
     i_warning = search(log, "warning")
-    logger.info("Datenmodell created in " + str(round(end_time - start_time)) + " sec.")
+    logger.info("Datamodel created in " + str(round(end_time - start_time)) + " sec.")
     logger.info(f'# {i_error} errors found')
     logger.info(f'# {i_warning} warnings found')
     endtime = time.ctime()
