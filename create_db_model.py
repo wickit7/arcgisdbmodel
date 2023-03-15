@@ -1203,6 +1203,5 @@ if __name__ == "__main__":
     logger.info("Datamodel created in " + str(round(end_time - start_time)) + " sec.")
     logger.info(f'# {i_error} errors found')
     logger.info(f'# {i_warning} warnings found')
-    endtime = time.ctime()
     logger.info(f'End time: {time.ctime()}')
     logger.info('****************************************************************\n')
