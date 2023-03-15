@@ -728,7 +728,7 @@ def add_attribute_rule(in_table, name, type, script_expression, **kwargs):
 
     except Exception:
         e = sys.exc_info()[1]
-        logger.error(f'Attronite rule "{name}" could not be added to "{in_table}": '
+        logger.error(f'Attribute rule "{name}" could not be added to "{in_table}": '
                      f'{e.args[0]}')
 
 def create_relationship_class(origin_table, destination_table, out_relationship_class,
