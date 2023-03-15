@@ -4,7 +4,7 @@
 #
 # Purpose: Script to create and update an ArcGIS data model based on a JSON input file. 
 # The implemented functions (e.g. "add_field()") include all parameters of the corresponding 
-# ArcGIS function (e.g. "AddField()") and possibly  additional parameters starting with "slu_". 
+# ArcGIS functions (e.g. "AddField()") and possibly  additional parameters starting with "slu_". 
 # The implemented functions follow the naming convention "lowercase_underscore" in contrast to 
 # ArcGIS functions which have the naming convention "CapitalizedWord".
 #
@@ -178,7 +178,7 @@ def delete_all(in_workspace)-> None:
     # delete datasets
     for ds in ds_list:
         try:
-            logger.info(f'The datsets "{ds}" will be deleted')
+            logger.info(f'The datasets "{ds}" will be deleted')
             arcpy.management.Delete(ds)
         except Exception:
             e = sys.exc_info()[1]
@@ -215,12 +215,11 @@ def delete_all_domain(in_workspace)-> None:
                          f'be deleted: {e.args[0]}')
 
 def delete_domain(in_workspace, domain_name):
-    """Delete  a domain (see Esri arcpy.management.DeleteDomain).
+    """Delete a domain (see Esri arcpy.management.DeleteDomain).
 
     Required:
-    in_workspace -- The path to workspace (gdb, sde c-onnection file).
+    in_workspace -- The path to workspace (gdb, sde connection file).
     domain_name -- The name of the domain.
-
     """   
     # delete domain
     try:
@@ -305,7 +304,7 @@ def add_coded_value_to_domain(in_workspace, domain_name, slu_domain_dict = None,
     can be used as input parameter, which allows to add several values to the domain at the same time.
 
     Required:
-        in_workspace -- The path to the Workspace (gdb, sde connection file).
+        in_workspace -- The path to the workspace (gdb, sde connection file).
         domain_name -- The name of the domain.
 
     Optional:
@@ -321,7 +320,6 @@ def add_coded_value_to_domain(in_workspace, domain_name, slu_domain_dict = None,
             for code in slu_domain_dict:
                 arcpy.management.AddCodedValueToDomain(in_workspace, domain_name,
                                                        code, slu_domain_dict[code])
-
         except Exception:
             e = sys.exc_info()[1]
             logger.error(f'No values could be added to the domain "{domain_name}": {e.args[0]}')
@@ -390,11 +388,11 @@ def remove_domain_from_fields(domain_name):
                         except Exception:
                             e = sys.exc_info()[1]
                             logger.error(f'Domain "{domain_name}" could not be removed from the field "{field.name}" '
-                                        f'in the table "{tb}": {e.args[0]}')
+                                         f'in the table "{tb}": {e.args[0]}')
 
 def create_feature_dataset(out_dataset_path, out_name, spatial_reference = 'CH1903+ LV95',
                         slu_overwrite = True)-> None:
-    """Create a feature dataset (see Dokumentation Esri arcpy.management.CreateFeatureDataset).
+    """Create a feature dataset (see Esri arcpy.management.CreateFeatureDataset).
 
     Required:
         out_dataset_path -- The path to the workspace (gdb, sde connection file).
@@ -403,7 +401,7 @@ def create_feature_dataset(out_dataset_path, out_name, spatial_reference = 'CH19
         spatial_reference -- The name of the spatial reference system.
         slu_overwrite -- If an existing dataset is to be overwritten (True or False).
     """
-    # check nameing convention
+    # check naming convention
     if contains_umlaut(out_name):
         logger.warning(f'"The dataset {out_name}" contains an Umlaut!')
     # if not out_name.isupper():
@@ -416,7 +414,7 @@ def create_feature_dataset(out_dataset_path, out_name, spatial_reference = 'CH19
             logger.info(f'Existing dataset "{out_name}" will be deleted')
             arcpy.management.Delete(out_dataset)
         else:
-            logger.warning(f'Existing dataset "{out_name}" will no be deleted')
+            logger.warning(f'Existing dataset "{out_name}" will not be deleted')
             return
 
     # create a dataset
@@ -442,13 +440,13 @@ def create_feature_class(out_path, out_name, geometry_type, spatial_reference = 
         slu_overwrite -- If an existing feature class is to be overwritten (True or False).
         **kwargs -- Additional parameters for the function arcpy.management.CreateFeatureclass (e.g. "has_z").
     """
-    # check nameing convention
+    # check naming convention
     if contains_umlaut(out_name):
         logger.warning(f'The feature class name "{out_name}" contains an Umlaut!')
     # if not out_name.isupper():
     #     logger.warning(f'The feature class name "{out_name}" is not in capital letters!')
 
-    # check if feature class is created in a dataset
+    # check if feature class is to be created in a dataset
     if out_dataset:
         out_path = os.path.join(out_path, out_dataset)
     else:
@@ -485,10 +483,10 @@ def create_table(out_path, out_name, slu_overwrite = True, **kwargs) -> None:
 
     Optional:
         slu_overwrite -- If an existing table is to be overwritten (True or False).
-        **kwargs -- Additional parameters for the function arcpy.management.CreateTable
+        **kwargs -- Additional parameters for the function arcpy.management.CreateTable.
     """
 
-    # check nameing convention
+    # check naming convention
     if contains_umlaut(out_name):
         logger.warning(f'The table name "{out_name}" contains an Umlaut!')
     # if not out_name.isupper():
@@ -525,7 +523,7 @@ def add_field(in_table, field_name, field_type, **kwargs):
         field_domain -- The name of the domain to be assigned to the field.
         **kwargs -- Additonal parameters for the function arcpy.management.AddField.
     """
-    # check nameing convention
+    # check naming convention
     if contains_umlaut(field_name):
         logger.warning(f'The field name "{field_name}" contains an Umlaut!')
     # if not field_name.isupper():
@@ -548,15 +546,15 @@ def delete_field(in_table, field_name):
     """
 
     try:
-        logger.info(f'Feld "{field_name}" wird gelöscht')
+        logger.info(f'Feld "{field_name}" will be deleted')
         arcpy.management.DeleteField(in_table, field_name)
     except Exception:
         e = sys.exc_info()[1]
-        logger.error(f'Fehler beim löschen des Feldes "{field_name}": {e.args[0]}')
+        logger.error(f'Error when deleting the field "{field_name}": {e.args[0]}')
 
 def calculate_field(in_table, field, expression, **kwargs):
     """ Calculates the values of a field for a feature class, feature layer, 
-    or raster (siehe documentation of Esri).
+    or raster (see documentation of Esri).
 
     Required:
         in_table -- The name of the table or feature class.
@@ -579,7 +577,7 @@ def calculate_field(in_table, field, expression, **kwargs):
         logger.error(f'Error when calculating the field "{field}": {e.args[0]}')
 
 def assign_domain_to_field(in_table, field_name, domain_name, subtype_code = None):
-    """Assigning a domain to a field (see documentation of Esri).
+    """Assign a domain to a field (see documentation of Esri).
 
     Required:
         in_table -- The name of the table or the feature class.
@@ -604,7 +602,7 @@ def assign_domain_to_field(in_table, field_name, domain_name, subtype_code = Non
                      f'{e.args[0]}')
 
 def create_subtype_field(in_table, field_name):
-    """create a subtype field. In contrast to the function arcpy.management.SetSubtypeField
+    """Create a subtype field. In contrast to the function arcpy.management.SetSubtypeField,
     the field is newly created, if it does not exist already.
 
     Required:
@@ -662,7 +660,7 @@ def set_default_subtype(in_table, subtype_code):
 
     Required:
         in_table -- The name of the table or feature class.
-        subtype_code -- The subtype code to be used as a deafault (e.g. "1").
+        subtype_code -- The subtype code to be used as a default (e.g. "1").
     """
     try:
         logger.info(f'Set subtype "{subtype_code}" in "{in_table}" as default')
@@ -716,7 +714,7 @@ def add_attribute_rule(in_table, name, type, script_expression, **kwargs):
     Required:
         in_table -- The name of the table or feature class.
         name -- The name of the rule.
-        type -- The typ of the rule.
+        type -- The type of the rule.
         script_expression -- The arcade expression to define the rule.
 
     Optional:
@@ -744,11 +742,11 @@ def create_relationship_class(origin_table, destination_table, out_relationship_
         slu_overwrite -- If an existing table is to be overwritten (True or False).
         **kwargs -- Additional parameters of the function arcpy.management.CreateRelationshipClass
     """
-    # check nameing convention
+    # check naming convention
     if contains_umlaut(out_relationship_class):
         logger.warning(f'The name of the relationship class "{out_relationship_class}" contains an Umlaut!')
-    if not out_relationship_class.isupper():
-        logger.warning(f'The name of the relationship class "{out_relationship_class}" is in capital letters!')
+    #if not out_relationship_class.isupper():
+    #    logger.warning(f'The name of the relationship class "{out_relationship_class}" is in capital letters!')
 
     # check if the relationship class already exists (not working!?)
     if arcpy.Exists(out_relationship_class):
@@ -771,7 +769,7 @@ def create_relationship_class(origin_table, destination_table, out_relationship_
 
 def add_rule_to_relationship_class(in_rel_class, **kwargs):
     """Add a rule to a realtionship class (see Esri arcpy.management.AddRuleToRelationshipClass)
-    For example it is possible to add a rule for a specific subtype.
+    For example, it is possible to add a rule to specify that the relationship is only set for a certain subtype.
 
     Required:
         in_rel_class -- The name of the relationship class.
@@ -824,7 +822,7 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
     else:
         if not os.path.isfile(workspace):
             logger.error(f'Workspace "{workspace}" does not exist!')
-            raise ValueError(f'Workspace "{workspace}" does not exist!!')
+            raise ValueError(f'Workspace "{workspace}" does not exist!')
 
     # set workspace
     arcpy.env.workspace = workspace
@@ -842,6 +840,7 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
 
     # set additional env settings 
     if environment_settings:
+        logger.info("Adjust default environment settings")
         if 'xy_tolerance' in environment_settings:
             arcpy.env.XYTolerance = environment_settings['xy_tolerance']
         if 'xy_resolution' in environment_settings:
@@ -869,6 +868,7 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
 
     # remove existing feature datasets, feature classes, tables and domains
     if delete_existing == 'True':
+        logger.info("Delete all existing data")
         delete_all(workspace)
 
     # create domains
@@ -892,8 +892,8 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                 set_value_for_range_domain(workspace, dic_filtered['domain_name'],
                                            domain_range["min_value"], domain_range["max_value"])
 
+    # creating dataset
     if datasets:
-        # creating dataset
         for dic in datasets:
             # filter dictionary
             dic_filtered = filter_dict(dic)
@@ -903,8 +903,8 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
             # creating dataset
             create_feature_dataset(workspace, **dic_filtered)
 
+    # creating feature classes
     if features:
-        # creating feature classes
         for dic in features:
             # filter dictionary
             dic_filtered = filter_dict(dic)
@@ -926,7 +926,7 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                     add_subtype(dic_filtered['out_name'], code, dic_subtype['SubtypeValues'][code])
                 if 'DefaultSubtypeCode' in dic_subtype:
                     set_default_subtype(dic_filtered['out_name'], dic_subtype['DefaultSubtypeCode'])
-            # add Fields
+            # add fields
             if 'Fields' in dic_filtered:
                 for dic_field in dic_filtered['Fields']:
                     field_domain_subtypes = None
@@ -950,8 +950,8 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                 for dic_rule in dic_filtered['AttributeRules']:
                     add_attribute_rule(dic_filtered['out_name'], **dic_rule)
 
+    # creating table
     if tables:
-        # creating table
         for dic in tables:
             # filter dictionary
             dic_filtered = filter_dict(dic)
@@ -994,8 +994,8 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                 for dic_rule in dic_filtered['AttributeRules']:
                     add_attribute_rule(dic_filtered['out_name'], **dic_rule)
 
+    # creating realationship class
     if relations:
-        # create realationship class
         for dic in relations:
             # filter dictionary
             dic_filtered = filter_dict(dic)
@@ -1029,28 +1029,27 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                 for dic_rule in rules:
                     add_rule_to_relationship_class(dic_filtered['out_relationship_class'], **dic_rule)
 
+    # delete feature classes
     if delete_features:
-        # delete feature classes
         for fc in delete_features:
             delete_item(fc,"FeatureClass")
 
+    # delete datasets
     if delete_datasets:
-        # delete datasets
         for ds in delete_datasets:
             delete_item(ds,"FeatureDataset")
 
+    # delete domains
     if delete_domains:
-        # delete domains
         for dm in delete_domains:
             delete_domain(workspace, dm)
 
-    if delete_all_domains == "True":
-        # delete all domains
+    # delete all domains
+    if delete_all_domains == "True":  
         delete_all_domain(workspace)
 
-
+    # update feature class
     if update_features:
-        # update feature class
         for dic in update_features:
             # filter dictionary (if "" oder None)
             dic_filtered = filter_dict(dic)
@@ -1081,9 +1080,8 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                 for dic_field in dic_filtered['CalculateFields']:
                     # calculate fields
                     calculate_field(dic_filtered['in_table'], **dic_field)
-
+    # update domains
     if update_domains:
-        # update domains
         for dic in update_domains:
             # add value to CODED-domain
             for dic_code in dic["AddCodedValues"]:
@@ -1171,13 +1169,13 @@ if __name__ == "__main__":
                 if "Environment" in data:
                     stage = data["Environment"]
     else:
-        print('no Parameter-JSON file specified')
+        print('No Parameter-JSON file specified!')
         sys.exit()
 
     # check if logfolder exists
     if not os.path.isdir(logfolder):
         try:
-            print(f'creating a log folder: {logfolder}')
+            print(f'Creating a log folder: {logfolder}')
             os.makedirs(logfolder)
         except:
             raise ValueError(f'The logfolder "{logfolder}" does not exist and could not be created!')
