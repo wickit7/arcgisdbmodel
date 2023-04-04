@@ -1,0 +1,33 @@
+2023-04-04 10:23:30,828 INFO ****************************************************************
+2023-04-04 10:23:30,829 INFO Start logging: Tue Apr  4 10:23:30 2023
+2023-04-04 10:23:34,478 INFO Delete all existing data
+2023-04-04 10:23:35,800 INFO The table "LOCATION__ATTACH" will be deleted
+2023-04-04 10:23:38,661 INFO The table "EVENT" will be deleted
+2023-04-04 10:23:39,611 INFO The table "EVENT__ATTACH" will be deleted
+2023-04-04 10:23:39,781 INFO The datasets "EVENT_MANAGEMENT" will be deleted
+2023-04-04 10:23:40,365 INFO The dataset "EVENT_MANAGEMENT" will be created
+2023-04-04 10:23:40,898 INFO The feature class "LOCATION" will be created
+2023-04-04 10:23:42,097 INFO Adding GlobalID to "LOCATION"
+2023-04-04 10:23:42,501 INFO Adding the field "LocationID"
+2023-04-04 10:23:42,885 INFO Adding the field "NAME"
+2023-04-04 10:23:43,237 INFO Adding the field "OWNER"
+2023-04-04 10:23:43,650 INFO Adding the field "DESCRIPTION"
+2023-04-04 10:23:44,061 INFO Activate editor tracking in "LOCATION"
+2023-04-04 10:23:44,824 INFO Activate attachments in "LOCATION"
+2023-04-04 10:23:45,728 INFO The table "EVENT" will be created
+2023-04-04 10:23:46,187 INFO Adding GlobalID to "EVENT"
+2023-04-04 10:23:46,526 INFO Adding the field "EventID"
+2023-04-04 10:23:46,855 INFO Adding the field "NAME"
+2023-04-04 10:23:47,186 INFO Adding the field "ORGANIZER"
+2023-04-04 10:23:47,554 INFO Adding the field "DESCRIPTION"
+2023-04-04 10:23:47,921 INFO Activate editor tracking in "EVENT"
+2023-04-04 10:23:48,611 INFO Activate attachments in "EVENT"
+2023-04-04 10:23:49,470 INFO The relationship class "EVENT_LOCATION_REL" will be created
+2023-04-04 10:23:50,313 INFO Adding the field "START_DATE"
+2023-04-04 10:23:50,579 INFO Adding the field "END_DATE"
+2023-04-04 10:23:50,845 INFO Datamodel created in 20 sec.
+2023-04-04 10:23:50,846 INFO # 0 errors found
+2023-04-04 10:23:50,846 INFO # 0 warnings found
+2023-04-04 10:23:50,847 INFO End time: Tue Apr  4 10:23:50 2023
+2023-04-04 10:23:50,847 INFO ****************************************************************
+

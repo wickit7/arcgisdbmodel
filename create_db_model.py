@@ -788,8 +788,8 @@ def add_rule_to_relationship_class(in_rel_class, **kwargs):
 
 # Main module: Check input parameters and call functions
 def main(conpath, db_name, overwrite, spatial_reference_name, environment_settings,
-         delete_existing, domains, datasets, features, tables, relations, update_features, update_domains, 
-         delete_features, delete_datasets, delete_domains, delete_all_domains, stage) -> None:
+         delete_existing, domains, datasets, features, tables, relations, update_features, update_tables,
+         update_domains, delete_features, delete_datasets, delete_domains, delete_all_domains, stage) -> None:
     """Check input parameters and call functions
 
     """
@@ -1080,6 +1080,40 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                 for dic_field in dic_filtered['CalculateFields']:
                     # calculate fields
                     calculate_field(dic_filtered['in_table'], **dic_field)
+
+    # update feature class
+    if update_tables:
+        for dic in update_tables:
+            # filter dictionary (if "" oder None)
+            dic_filtered = filter_dict(dic)
+            # add attribute rules
+            if 'AttributeRules' in dic_filtered:
+                for dic_rule in dic_filtered['AttributeRules']:
+                    add_attribute_rule(dic_filtered['in_table'], **dic_rule)
+            # add fields
+            if 'AddFields' in dic_filtered:
+                for dic_field in dic_filtered['AddFields']:
+                    field_domain_subtypes = None
+                    if "FieldDomainSubtype" in dic_field:
+                        field_domain_subtypes = dic_field.pop('FieldDomainSubtype')
+                    # add fields
+                    add_field(dic_filtered['in_table'], **dic_field)
+                    # add domains to subtypes
+                    if field_domain_subtypes:
+                        for dic_domain in field_domain_subtypes:
+                            assign_domain_to_field(dic_filtered['in_table'], dic_field['field_name'],
+                                                   dic_domain['field_domain'], dic_domain['subtype_code'])
+            # delete fields
+            if 'DeleteFields' in dic_filtered:
+                # delete Fields
+                delete_field(dic_filtered['in_table'], dic_filtered['DeleteFields'])
+
+            # calculate fields
+            if 'CalculateFields' in dic_filtered:
+                for dic_field in dic_filtered['CalculateFields']:
+                    # calculate fields
+                    calculate_field(dic_filtered['in_table'], **dic_field)
+
     # update domains
     if update_domains:
         for dic in update_domains:
@@ -1139,6 +1173,10 @@ if __name__ == "__main__":
                 update_features = data["UpdateFeatures"]
             else:
                 update_features = None
+            if "UpdateTables" in data:
+                update_tables = data["UpdateTables"]
+            else:
+                update_tables = None
             if "UpdateDomains" in data:
                 update_domains = data["UpdateDomains"]
             else:
@@ -1191,8 +1229,8 @@ if __name__ == "__main__":
 
     # Main
     main(conpath, db_name, overwrite, spatial_reference_name, environment_settings, delete_existing, 
-         domains, datasets, features, tables, relations, update_features, update_domains, delete_features, 
-         delete_datasets, delete_domains, delete_all_domains, stage)
+         domains, datasets, features, tables, relations, update_features, update_tables, update_domains, 
+         delete_features, delete_datasets, delete_domains, delete_all_domains, stage)
     
     # end logging
     end_time = time.time()
