@@ -84,7 +84,7 @@
 | Relations/Rules/origin_subtype | The subtype of the source table for which the rule is to apply.  | "concert" |
 | Relations/Rules/destination_subtype | The subtype of the destination table for which the rule is to apply. | "stage" |
 | Relations/Rules/* | All other parameters of "arcpy.management.AddRuleToRelationshipClass" can be used. (optional) | --- |
-| **UpdateFeatures**| A list of existing feature classes and/or tables to be updated. (optional) | --- |
+| **UpdateFeatures**| A list of existing feature classes to be updated. (optional) | --- |
 | UpdateFeatures/in_table | The name of the existing table or feature class. (mandatory) | --- |
 | UpdateFeatures/**AttributeRules** | If a rule affects more than one table, it cannot be created until both tables have been created → List in the JSON section "UpdateFeatures" instead of "Features". (optional) | --- |
 | UpdateFeatures/AttributeRules/* | The same parameters as in the section "Features/AttributeRules". | --- |
@@ -94,6 +94,7 @@
 | UpdateFeatures/CalculateFields/field | The field that will be updated with the new calculation. (mandatory)| "xCentroid" |
 | UpdateFeatures/CalculateFields/expression | The calculation expression. (mandatory)| "!SHAPE.CENTROID.X!" |
 | UpdateFeatures/CalculateFields/* | All other parameters of the function "arcpy.management.CalculateField" (optional)| {expression_type:"PYTHON3"} |
+| **UpdateTables**| A list of existing tables to be updated. Analog to "UpdateFeatures" (optional) | --- |
 | UpdateFeatures/DeleteFields | A list with field names to be deleted. | ["country","address" ] |
 | **UpdateDomains**| A list of existing domains to be updated. (optional) | --- |
 | UpdateDomains/domain_name| The name of the existing domain. (optional) | "Type_Event" |

@@ -1,0 +1,21 @@
+{
+   "LogFolder":"Logs",
+   "LogVersion":"v02",
+   "Conpath":"C:/Temp/tutorial_3",
+   "DBName":"event_management.gdb",
+   "Overwrite":"True",
+   "DeleteAllExisting":"False",
+   "SpatialReferenceName":"CH1903+ LV95",
+   "UpdateTables":[{	
+         "in_table":"EVENT",
+         "AddFields":[
+            {
+               "field_name":"Contact",
+               "field_type":"TEXT",
+               "field_length":"40",
+               "field_alias":"Contact"
+            }
+         ]
+      }
+   ]
+}

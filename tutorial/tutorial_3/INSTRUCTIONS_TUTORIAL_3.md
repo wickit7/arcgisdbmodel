@@ -168,6 +168,10 @@ Finally, the follwoing parameters are used to define the "Many to Many"-relation
 }
 ```
 
+
+## Update Table
+A new field "Contact" is added to the table "EVENT": [tutorial_3_update.json](tutorial_3_update.json). 
+
 ## Example Data
 <img  src="..\img\tutorial_3_map.PNG" width=90% height=90%>
 
