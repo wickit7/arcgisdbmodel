@@ -8,6 +8,11 @@ Creating a data model using a JSON file has several advantages over manual creat
 - **Traceability**: By documenting changes to the data model in JSON files, you can easily track the evolution of the model over time and understand the reasoning behind each change.
 - **Collaboration**: JSON files can be easily shared and edited by multiple people, making it easier to collaborate on the creation and modification of the data model.
 
+
+<img  src="https://user-images.githubusercontent.com/45633047/231165349-5e8b5fbd-dacd-48cf-8e09-fade3830a79c.jpg" width=70% height=70%>
+
+
+
 ## Getting Started
 To get started with creating an ArcGIS data model using JSON, you'll need the following:
 - [ArcGIS Pro](https://pro.arcgis.com/de/pro-app/latest/get-started/download-arcgis-pro.htm) installed on your machine
