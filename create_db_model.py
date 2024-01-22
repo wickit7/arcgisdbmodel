@@ -502,7 +502,7 @@ def create_table(out_path, out_name, slu_overwrite = True, **kwargs) -> None:
             logger.warning(f'The existing table "{out_table}" will not be overwritten')
             return
 
-    # crate table
+    # create table
     try:
         logger.info(f'The table "{out_name}" will be created')
         arcpy.management.CreateTable(out_path = out_path, out_name = out_name, **kwargs)
