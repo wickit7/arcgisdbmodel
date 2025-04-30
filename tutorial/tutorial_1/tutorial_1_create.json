@@ -108,7 +108,8 @@
 						"field_name": "TYPE",
 						"field_type": "SHORT",
 						"field_domain": "AssetType",
-						"field_alias": "Asset Type"
+						"field_alias": "Asset Type",
+						"default_value": "0"
 						},
 						{
 						"field_name": "DESCRIPTION",
@@ -126,7 +127,8 @@
 						"field_name": "STATUS",
 						"field_type": "SHORT",
 						"field_domain": "AssetStatus",
-						"field_alias": "Status"
+						"field_alias": "Status",
+						"default_value": "0"
 						},
 						{
 						"field_name": "HEIGHT",

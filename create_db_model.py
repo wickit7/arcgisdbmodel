@@ -529,14 +529,27 @@ def add_field(in_table, field_name, field_type, **kwargs):
     # if not field_name.isupper():
     #     logger.warning(f'The field name "{field_name}" is not in capital letters!')
     # Add field
+
+    if 'default_value' in kwargs:
+        default_value = kwargs.get('default_value')
+        kwargs.pop('default_value')
+    else:
+        default_value = False
     try:
         logger.info(f'Adding the field "{field_name}"')
-        arcpy.management.AddField(in_table = in_table, field_name = field_name,
-                                field_type = field_type, **kwargs)
+        arcpy.management.AddField(in_table = in_table, field_name = field_name, field_type = field_type, **kwargs)
     except Exception:
         e = sys.exc_info()[1]
         logger.error(f'Error when creating the field "{field_name}": {e.args[0]}')
-
+    if default_value:
+        try:
+            logger.info(f'Adding the default value "{default_value}" for "{field_name}"')
+            arcpy.management.AssignDefaultToField(in_table = in_table, field_name = field_name, default_value = default_value, subtype_code=None, clear_value="DO_NOT_CLEAR")
+        except Exception:
+            e = sys.exc_info()[1]
+            default_value = "none"
+            logger.error(f'Error when adding default value "{default_value}": {e.args[0]}')
+             
 def delete_field(in_table, field_name):
     """Deleting a field from a table or a feature class (see documentation of Esri).
 
@@ -576,7 +589,7 @@ def calculate_field(in_table, field, expression, **kwargs):
         e = sys.exc_info()[1]
         logger.error(f'Error when calculating the field "{field}": {e.args[0]}')
 
-def assign_domain_to_field(in_table, field_name, domain_name, subtype_code = None):
+def assign_domain_to_field(in_table, field_name, domain_name, subtype_code = None, default_value = None):
     """Assign a domain to a field (see documentation of Esri).
 
     Required:
@@ -589,13 +602,20 @@ def assign_domain_to_field(in_table, field_name, domain_name, subtype_code = Non
     """
     # assign domain
     try:
-        if subtype_code:
-            logger.info(f'The domain "{domain_name}" will be assigned to the field "{field_name}" '
-                        f'for the subtype "{subtype_code}"')
-            arcpy.management.AssignDomainToField(in_table, field_name, domain_name, subtype_code)
+        if domain_name == "" and subtype_code:
+            logger.info(f'The default value "{default_value}" will be assigned to the field "{field_name}"')
+            arcpy.AssignDefaultToField_management(in_table, field_name, default_value,subtype_code)
         else:
-            logger.info(f'The domain "{domain_name}" will be assigned to the field "{field_name}"')
-            arcpy.management.AssignDomainToField(in_table, field_name, domain_name)
+            if subtype_code:
+                logger.info(f'The domain "{domain_name}" will be assigned to the field "{field_name}" '
+                            f'for the subtype "{subtype_code}"')
+                arcpy.management.AssignDomainToField(in_table, field_name, domain_name, subtype_code)
+            else:
+                logger.info(f'The domain "{domain_name}" will be assigned to the field "{field_name}"')
+                arcpy.management.AssignDomainToField(in_table, field_name, domain_name)
+            if default_value:
+                logger.info(f'The default value "{default_value}" will be assigned to the field "{field_name}"')
+                arcpy.AssignDefaultToField_management(in_table, field_name, default_value,subtype_code)
     except Exception:
         e = sys.exc_info()[1]
         logger.error(f'The domain"{domain_name}" could not be assigned to the field "{field_name}": '
@@ -937,8 +957,12 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                     # add domains to subtypes
                     if field_domain_subtypes:
                         for dic_domain in field_domain_subtypes:
-                            assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
-                                                   dic_domain['field_domain'], dic_domain['subtype_code'])
+                            if 'default_value' in dic_domain:
+                                assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
+                                                       dic_domain['field_domain'], dic_domain['subtype_code'],dic_domain['default_value'])
+                            else:
+                                assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
+                                                       dic_domain['field_domain'], dic_domain['subtype_code'])
             # add editor tracking including editor tracking fields
             if 'EditorTracking' in dic_filtered and dic_filtered['EditorTracking'] == 'True':
                 enable_editor_tracking(in_dataset = dic_filtered['out_name'], add_fields = "ADD_FIELDS")
@@ -981,8 +1005,12 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                     # add domains to subtypes
                     if field_domain_subtypes:
                         for dic_domain in field_domain_subtypes:
-                            assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
-                                                   dic_domain['field_domain'], dic_domain['subtype_code'])
+                            if 'default_value' in dic_domain:
+                                assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
+                                                       dic_domain['field_domain'], dic_domain['subtype_code'],dic_domain['default_value'])
+                            else:
+                                assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
+                                                       dic_domain['field_domain'], dic_domain['subtype_code'])
             # add editor tracking including editor tracking Felder
             if 'EditorTracking' in dic_filtered and dic_filtered['EditorTracking'] == 'True':
                 enable_editor_tracking(in_dataset = dic_filtered['out_name'], add_fields = "ADD_FIELDS")
@@ -1023,8 +1051,13 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                     # ad domains to subtypes
                     if field_domain_subtypes:
                         for dic_domain in field_domain_subtypes:
-                            assign_domain_to_field(dic_filtered['out_relationship_class'], dic_field['field_name'],
-                                                   dic_domain['field_domain'], dic_domain['subtype_code'])
+                            if 'default_value' in dic_domain:
+                                assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
+                                                       dic_domain['field_domain'], dic_domain['subtype_code'],dic_domain['default_value'])
+                            else:
+                                assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
+                                                       dic_domain['field_domain'], dic_domain['subtype_code'])
+ 
             if rules:
                 for dic_rule in rules:
                     add_rule_to_relationship_class(dic_filtered['out_relationship_class'], **dic_rule)
@@ -1068,8 +1101,13 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                     # add domains to subtypes
                     if field_domain_subtypes:
                         for dic_domain in field_domain_subtypes:
-                            assign_domain_to_field(dic_filtered['in_table'], dic_field['field_name'],
-                                                   dic_domain['field_domain'], dic_domain['subtype_code'])
+                            if 'default_value' in dic_domain:
+                                assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
+                                                       dic_domain['field_domain'], dic_domain['subtype_code'],dic_domain['default_value'])
+                            else:
+                                assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
+                                                       dic_domain['field_domain'], dic_domain['subtype_code'])
+  
             # delete fields
             if 'DeleteFields' in dic_filtered:
                 # delete Fields
@@ -1101,8 +1139,12 @@ def main(conpath, db_name, overwrite, spatial_reference_name, environment_settin
                     # add domains to subtypes
                     if field_domain_subtypes:
                         for dic_domain in field_domain_subtypes:
-                            assign_domain_to_field(dic_filtered['in_table'], dic_field['field_name'],
-                                                   dic_domain['field_domain'], dic_domain['subtype_code'])
+                            if 'default_value' in dic_domain:
+                                assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
+                                                       dic_domain['field_domain'], dic_domain['subtype_code'],dic_domain['default_value'])
+                            else:
+                                assign_domain_to_field(dic_filtered['out_name'], dic_field['field_name'],
+                                                       dic_domain['field_domain'], dic_domain['subtype_code'])
             # delete fields
             if 'DeleteFields' in dic_filtered:
                 # delete Fields
